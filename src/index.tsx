@@ -621,9 +621,9 @@ const Contact = () => (
               <label>詢問類別</label>
               <select>
                 <option value="">請選擇詢問類別</option>
-                <option>鋁合金系統模板諮詢</option>
+                <option>鋁合金系統模板工程諮詢</option>
+                <option>傳統模板工程諮詢</option>
                 <option>工程報價</option>
-                <option>鷹架工程</option>
                 <option>人才應徵</option>
                 <option>其他</option>
               </select>
