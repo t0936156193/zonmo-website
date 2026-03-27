@@ -2,35 +2,35 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  /* ── 黑白工業感主色盤 ── */
-  --black:     #0a0a0a;
-  --dark:      #111111;
-  --dark-2:    #1a1a1a;
-  --dark-3:    #222222;
-  --dark-4:    #2d2d2d;
-  --mid:       #444444;
-  --gray:      #888888;
-  --gray-lt:   #aaaaaa;
-  --silver:    #cccccc;
-  --light:     #e8e8e8;
-  --off-white: #f2f2f2;
+  /* ── 主色盤：參考佑昇官網 #04304a 深海軍藍系 ── */
+  --black:     #021e2f;   /* 最深底色（比 #04304a 再深一級） */
+  --dark:      #04304a;   /* 佑昇主色 — 深海軍藍 */
+  --dark-2:    #063e5e;   /* 稍淺層 */
+  --dark-3:    #0a5070;   /* 中深藍 */
+  --dark-4:    #1a6688;   /* 中藍 */
+  --mid:       #2a8fbf;   /* 佑昇強調色 — 鋼鐵藍 */
+  --gray:      #7a95a5;   /* 藍灰中性 */
+  --gray-lt:   #a8bec8;   /* 淺藍灰 */
+  --silver:    #c8d8e0;   /* 銀藍 */
+  --light:     #dde8ed;   /* 極淺藍灰 */
+  --off-white: #f0f5f7;   /* 米白帶藍 */
   --white:     #ffffff;
 
-  /* ── 點綴色：鋁銀 / 工業金屬感 ── */
-  --accent:    #c8a96e;   /* 黃銅金屬 */
-  --accent-lt: #e0c890;   /* 淺金 */
-  --accent-dk: #9a7a40;   /* 深金 */
-  --steel:     #8099aa;   /* 鋼鐵藍灰 */
+  /* ── 點綴色：與佑昇同系，亮藍強調 ── */
+  --accent:    #2a8fbf;   /* 佑昇強調藍（主要 CTA、高亮） */
+  --accent-lt: #4db0db;   /* 淺亮藍（hover 狀態） */
+  --accent-dk: #1a6e96;   /* 深藍（pressed 狀態） */
+  --steel:     #7a95a5;   /* 輔助藍灰 */
 
   /* ── Legacy 相容（部分元件仍引用） ── */
-  --primary:   #111111;
-  --secondary: #444444;
-  --gray-100:  #f2f2f2;
-  --gray-200:  #e0e0e0;
-  --gray-400:  #999999;
-  --gray-600:  #666666;
-  --gray-800:  #333333;
-  --text:      #1a1a1a;
+  --primary:   #04304a;
+  --secondary: #2a8fbf;
+  --gray-100:  #f0f5f7;
+  --gray-200:  #dde8ed;
+  --gray-400:  #a8bec8;
+  --gray-600:  #7a95a5;
+  --gray-800:  #1a3d52;
+  --text:      #0d2233;
 
   --radius:    6px;
   --radius-lg: 12px;
@@ -215,8 +215,8 @@ ul { list-style: none; }
       -45deg,
       transparent,
       transparent 80px,
-      rgba(200,169,110,.03) 80px,
-      rgba(200,169,110,.03) 81px
+      rgba(42,143,191,.03) 80px,
+      rgba(42,143,191,.03) 81px
     );
 }
 
@@ -254,7 +254,7 @@ ul { list-style: none; }
   align-items: center;
   gap: 10px;
   background: transparent;
-  border: 1px solid rgba(200,169,110,.4);
+  border: 1px solid rgba(42,143,191,.4);
   color: var(--accent);
   padding: 6px 20px;
   border-radius: 2px;
@@ -381,7 +381,7 @@ ul { list-style: none; }
 }
 .hero-scroll-line {
   width: 1px; height: 44px;
-  background: linear-gradient(to bottom, rgba(200,169,110,.5), transparent);
+  background: linear-gradient(to bottom, rgba(42,143,191,.5), transparent);
 }
 
 @keyframes bounce {
@@ -474,8 +474,8 @@ section { padding: 100px 0; }
   transition: background var(--transition), border-color var(--transition);
 }
 .partner-badge:hover {
-  background: rgba(200,169,110,.1);
-  border-color: rgba(200,169,110,.3);
+  background: rgba(42,143,191,.1);
+  border-color: rgba(42,143,191,.3);
 }
 .partner-badge i { color: var(--accent); font-size: 12px; }
 .partner-badge-logo {
@@ -626,7 +626,7 @@ section { padding: 100px 0; }
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(160deg, rgba(200,169,110,.04), transparent);
+  background: linear-gradient(160deg, rgba(42,143,191,.04), transparent);
   opacity: 0;
   transition: opacity var(--transition);
 }
@@ -639,8 +639,8 @@ section { padding: 100px 0; }
 
 .value-icon {
   width: 64px; height: 64px;
-  background: rgba(200,169,110,.1);
-  border: 1px solid rgba(200,169,110,.25);
+  background: rgba(42,143,191,.1);
+  border: 1px solid rgba(42,143,191,.25);
   border-radius: var(--radius);
   display: flex; align-items: center; justify-content: center;
   margin: 0 auto 22px;
@@ -1033,8 +1033,8 @@ section { padding: 100px 0; }
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  background: rgba(200,169,110,.12);
-  border: 1px solid rgba(200,169,110,.3);
+  background: rgba(42,143,191,.12);
+  border: 1px solid rgba(42,143,191,.3);
   color: var(--white);
   border-radius: var(--radius);
   padding: 24px 20px;
@@ -1293,13 +1293,13 @@ section { padding: 100px 0; }
   transition: background var(--transition), border-color var(--transition);
 }
 .contact-card:hover {
-  background: rgba(200,169,110,.08);
-  border-color: rgba(200,169,110,.3);
+  background: rgba(42,143,191,.08);
+  border-color: rgba(42,143,191,.3);
 }
 .contact-card-icon {
   width: 44px; height: 44px;
-  background: rgba(200,169,110,.12);
-  border: 1px solid rgba(200,169,110,.25);
+  background: rgba(42,143,191,.12);
+  border: 1px solid rgba(42,143,191,.25);
   border-radius: var(--radius);
   display: flex; align-items: center; justify-content: center;
   font-size: 18px;
@@ -1366,7 +1366,7 @@ section { padding: 100px 0; }
 .form-group textarea:focus,
 .form-group select:focus {
   border-color: var(--accent);
-  background: rgba(200,169,110,.06);
+  background: rgba(42,143,191,.06);
 }
 .form-group input::placeholder,
 .form-group textarea::placeholder { color: rgba(255,255,255,.2); }
@@ -1453,14 +1453,14 @@ section { padding: 100px 0; }
   text-align: center;
   transition: border-color var(--transition);
 }
-.benefit-item:hover { border-color: rgba(200,169,110,.3); }
+.benefit-item:hover { border-color: rgba(42,143,191,.3); }
 .benefit-item i { font-size: 20px; color: var(--accent); margin-bottom: 8px; display: block; }
 .benefit-item p { font-size: .83rem; color: rgba(255,255,255,.4); line-height: 1.5; }
 .benefit-item strong { color: var(--white); display: block; font-size: .9rem; margin-bottom: 4px; }
 
 .apply-cta {
-  background: rgba(200,169,110,.1);
-  border: 1px solid rgba(200,169,110,.25);
+  background: rgba(42,143,191,.1);
+  border: 1px solid rgba(42,143,191,.25);
   border-radius: var(--radius);
   padding: 22px;
   text-align: center;
