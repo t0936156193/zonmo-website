@@ -246,7 +246,7 @@ const Hero = () => (
         </div>
         <div class="stat-divider"></div>
         <div class="stat-item">
-          <div class="stat-number" data-target="50" data-suffix="+">0+</div>
+          <div class="stat-number" data-target="5" data-suffix="+">0+</div>
           <div class="stat-label">工程實績</div>
         </div>
         <div class="stat-divider"></div>
