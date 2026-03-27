@@ -83,21 +83,42 @@ document.querySelectorAll('[data-modal="privacy"]').forEach(btn => {
 document.getElementById('modal-close-btn').addEventListener('click', () => modal.classList.remove('open'));
 modal.addEventListener('click', e => { if (e.target === modal) modal.classList.remove('open'); });
 
-/* ---- Contact form ---- */
+/* ---- Contact form (Formspree) ---- */
 const form = document.getElementById('contact-form');
 if (form) {
-  form.addEventListener('submit', e => {
+  form.addEventListener('submit', async e => {
     e.preventDefault();
     const btn = form.querySelector('.form-submit');
-    btn.textContent = '✓ 已收到您的訊息，謝謝！';
-    btn.style.background = '#27ae60';
+    btn.textContent = '傳送中...';
     btn.disabled = true;
-    setTimeout(() => {
-      btn.textContent = '送出詢問';
-      btn.style.background = '';
+    try {
+      const data = new FormData(form);
+      const res = await fetch('https://formspree.io/f/xkopgqdj', {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        btn.textContent = '✓ 已送出！我們將盡快與您聯繫';
+        btn.style.background = '#1a6e96';
+        form.reset();
+        setTimeout(() => {
+          btn.textContent = '送出詢問';
+          btn.style.background = '';
+          btn.disabled = false;
+        }, 5000);
+      } else {
+        throw new Error('送出失敗');
+      }
+    } catch(err) {
+      btn.textContent = '✗ 送出失敗，請直接來電洽詢';
+      btn.style.background = '#c0392b';
       btn.disabled = false;
-      form.reset();
-    }, 4000);
+      setTimeout(() => {
+        btn.textContent = '送出詢問';
+        btn.style.background = '';
+      }, 4000);
+    }
   });
 }
 
@@ -715,24 +736,24 @@ const Contact = () => (
         </div>
         <div class="contact-form-box fade-in">
           <h3><i class="fas fa-paper-plane" style="color:var(--accent);margin-right:10px"></i>傳送訊息給我們</h3>
-          <form id="contact-form">
+          <form id="contact-form" action="https://formspree.io/f/xkopgqdj" method="POST">
             <div class="form-row">
               <div class="form-group">
                 <label>您的姓名 *</label>
-                <input type="text" placeholder="請輸入姓名" required />
+                <input type="text" name="姓名" placeholder="請輸入姓名" required />
               </div>
               <div class="form-group">
                 <label>聯絡電話 *</label>
-                <input type="tel" placeholder="請輸入電話" required />
+                <input type="tel" name="電話" placeholder="請輸入電話" required />
               </div>
             </div>
             <div class="form-group">
               <label>電子信箱</label>
-              <input type="email" placeholder="your@email.com" />
+              <input type="email" name="email" placeholder="your@email.com" />
             </div>
             <div class="form-group">
               <label>詢問類別</label>
-              <select>
+              <select name="詢問類別">
                 <option value="">請選擇詢問類別</option>
                 <option>鋁合金系統模板工程諮詢</option>
                 <option>傳統模板工程諮詢</option>
@@ -743,7 +764,7 @@ const Contact = () => (
             </div>
             <div class="form-group">
               <label>訊息內容</label>
-              <textarea placeholder="請描述您的工程需求或問題..."></textarea>
+              <textarea name="訊息內容" placeholder="請描述您的工程需求或問題..."></textarea>
             </div>
             <button type="submit" class="form-submit">
               <i class="fas fa-paper-plane"></i> 送出詢問
