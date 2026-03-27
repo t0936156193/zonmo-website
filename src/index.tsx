@@ -215,16 +215,16 @@ const Hero = () => (
         <img src="/static/logo_white.png" alt="中華鋁模有限公司" class="hero-logo-img" />
       </div>
       <div class="hero-badge">
-        <i class="fas fa-certificate"></i>
-        <span>台灣鋁模板專業領導品牌</span>
+        <i class="fas fa-grip-lines"></i>
+        <span>ALUMINUM FORMWORK ENGINEERING</span>
       </div>
       <h1 class="hero-title">
         <span class="accent-text">中華鋁模</span>
         <br />有限公司
       </h1>
       <p class="hero-subtitle">
-        永續建築，高效施工，中華鋁模是您最佳選擇！
-        <br />結合先進鋁合金模板技術，為每個建築項目提供卓越品質。
+        永續建築・高效施工・品質第一
+        <br />結合先進鋁合金模板技術，為每個建築項目提供卓越品質保障。
       </p>
       <div class="hero-buttons">
         <a href="#services" class="btn-primary">
@@ -304,7 +304,7 @@ const About = () => (
           </div>
         </div>
         <div class="about-text fade-in">
-          <span class="section-label">關於我們</span>
+          <span class="section-label">ABOUT US</span>
           <h2 class="section-title">從木模到鋁模<br />二十餘年的專業積累</h2>
           <div class="section-divider"></div>
           <div class="timeline">
@@ -341,7 +341,7 @@ const Values = () => (
   <section id="values" class="values">
     <div class="container">
       <div class="values-header fade-in">
-        <span class="section-label">經營理念</span>
+        <span class="section-label">CORE VALUES</span>
         <h2 class="section-title">三大核心價值<br />驅動卓越建築</h2>
         <div class="section-divider"></div>
         <p class="section-desc">
@@ -385,7 +385,7 @@ const Services = () => (
     <div class="container">
       <div class="services-layout">
         <div class="services-info fade-in">
-          <span class="section-label">服務項目</span>
+          <span class="section-label">OUR SERVICES</span>
           <h2 class="section-title">鋁合金系統模板<br />全方位解決方案</h2>
           <div class="section-divider"></div>
           <p class="section-desc">
@@ -479,7 +479,7 @@ const Projects = () => (
     <div class="container">
       {/* Header */}
       <div class="projects-header fade-in">
-        <span class="section-label">工程實績</span>
+        <span class="section-label">PROJECTS</span>
         <h2 class="section-title">專業施工，實力說話</h2>
         <div class="section-divider"></div>
         <p class="section-desc" style="margin:0 auto">每一個工程都是我們對品質承諾的具體展現——鋁模板精準安裝、嚴格施工管控，讓建築工程更高效、更優質。</p>
@@ -560,7 +560,7 @@ const Contact = () => (
   <section id="contact" class="contact">
     <div class="container">
       <div class="contact-header fade-in">
-        <span class="section-label">聯絡我們</span>
+        <span class="section-label">CONTACT US</span>
         <h2 class="section-title">立即洽詢，開啟合作</h2>
         <div class="section-divider"></div>
         <p class="section-desc">無論您有任何工程諮詢、報價需求或合作洽談，我們的專業團隊將盡快回覆您。</p>
@@ -648,7 +648,7 @@ const Recruitment = () => (
     <div class="container">
       <div class="recruitment-grid">
         <div class="recruitment-intro fade-in">
-          <span class="section-label">人才招募</span>
+          <span class="section-label">JOIN OUR TEAM</span>
           <h2 class="section-title">加入我們<br />共創建築未來</h2>
           <div class="section-divider"></div>
           <p class="section-desc">
