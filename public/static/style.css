@@ -65,16 +65,15 @@ ul { list-style: none; }
   align-items: center;
   gap: 12px;
 }
-.nav-logo-icon {
-  width: 44px; height: 44px;
-  background: linear-gradient(135deg, var(--accent), var(--secondary));
-  border-radius: 10px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 22px;
-  font-weight: 900;
-  color: var(--white);
-  letter-spacing: -1px;
+/* Logo image in navbar */
+.nav-logo-img {
+  height: 48px;
+  width: auto;
   flex-shrink: 0;
+  object-fit: contain;
+  /* Invert the grey logo to white for dark navbar background */
+  filter: brightness(0) invert(1);
+  transition: filter var(--transition);
 }
 .nav-logo-text { color: var(--white); }
 .nav-logo-text .cn { font-size: 17px; font-weight: 700; letter-spacing: 1px; }
@@ -118,6 +117,29 @@ ul { list-style: none; }
   background: var(--white);
   border-radius: 2px;
   transition: var(--transition);
+}
+
+/* Hero Logo */
+.hero-logo-wrap {
+  margin-bottom: 24px;
+}
+.hero-logo-img {
+  height: 100px;
+  width: auto;
+  object-fit: contain;
+  /* Invert grey logo → white + slight blue tint via hue-rotate */
+  filter: brightness(0) invert(1) opacity(.92);
+  margin: 0 auto;
+  display: block;
+}
+
+/* Footer logo */
+.footer-logo-img {
+  height: 44px;
+  width: auto;
+  object-fit: contain;
+  filter: brightness(0) invert(1) opacity(.8);
+  flex-shrink: 0;
 }
 
 /* ===== HERO ===== */
