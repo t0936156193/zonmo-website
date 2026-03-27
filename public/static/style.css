@@ -71,10 +71,10 @@ ul { list-style: none; }
   width: auto;
   flex-shrink: 0;
   object-fit: contain;
-  /* Invert the grey logo to white for dark navbar background */
-  filter: brightness(0) invert(1);
-  transition: filter var(--transition);
+  /* White transparent PNG — no filter needed */
+  transition: opacity var(--transition);
 }
+.nav-logo-img:hover { opacity: .85; }
 .nav-logo-text { color: var(--white); }
 .nav-logo-text .cn { font-size: 17px; font-weight: 700; letter-spacing: 1px; }
 .nav-logo-text .en { font-size: 10px; color: var(--accent); letter-spacing: .5px; opacity: .9; }
@@ -124,13 +124,13 @@ ul { list-style: none; }
   margin-bottom: 24px;
 }
 .hero-logo-img {
-  height: 100px;
+  height: 110px;
   width: auto;
   object-fit: contain;
-  /* Invert grey logo → white + slight blue tint via hue-rotate */
-  filter: brightness(0) invert(1) opacity(.92);
   margin: 0 auto;
   display: block;
+  opacity: .95;
+  drop-shadow: 0 2px 12px rgba(0,0,0,.2);
 }
 
 /* Footer logo */
@@ -138,7 +138,7 @@ ul { list-style: none; }
   height: 44px;
   width: auto;
   object-fit: contain;
-  filter: brightness(0) invert(1) opacity(.8);
+  opacity: .85;
   flex-shrink: 0;
 }
 

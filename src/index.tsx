@@ -135,7 +135,7 @@ const Hero = () => (
     <div class="hero-particles"></div>
     <div class="hero-content">
       <div class="hero-logo-wrap">
-        <img src="/static/logo.png" alt="中華鋁模有限公司" class="hero-logo-img" />
+        <img src="/static/logo_white.png" alt="中華鋁模有限公司" class="hero-logo-img" />
       </div>
       <div class="hero-badge">
         <i class="fas fa-certificate"></i>
@@ -588,7 +588,7 @@ const Footer = () => (
       <div class="footer-grid">
         <div class="footer-brand">
           <div class="nav-logo">
-            <img src="/static/logo.png" alt="中華鋁模有限公司 Logo" class="footer-logo-img" />
+            <img src="/static/logo_white.png" alt="中華鋁模有限公司 Logo" class="footer-logo-img" />
             <div class="nav-logo-text">
               <div class="cn">中華鋁模有限公司</div>
               <div class="en">CHUN HAN Engineering Co., Ltd.</div>
@@ -680,7 +680,7 @@ const Navbar = () => (
     <div class="container">
       <div class="nav-inner">
         <a href="/" class="nav-logo">
-          <img src="/static/logo.png" alt="中華鋁模有限公司 Logo" class="nav-logo-img" />
+          <img src="/static/logo_white.png" alt="中華鋁模有限公司 Logo" class="nav-logo-img" />
           <div class="nav-logo-text">
             <div class="cn">中華鋁模有限公司</div>
             <div class="en">CHUN HAN Engineering</div>
