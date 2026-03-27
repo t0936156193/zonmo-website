@@ -7,14 +7,96 @@ const app = new Hono()
 // Serve static files
 app.use('/static/*', serveStatic({ root: './public' }))
 
+// SEO files — 直接回傳內容（Cloudflare Workers 不支援 fs）
+app.get('/robots.txt', (c) => c.text(
+`User-agent: *
+Allow: /
+
+Sitemap: https://zonmo.com.tw/sitemap.xml
+`))
+
+app.get('/sitemap.xml', (c) => {
+  c.header('Content-Type', 'application/xml')
+  return c.body(`<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://zonmo.com.tw/</loc>
+    <lastmod>2025-03-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://zonmo.com.tw/#about</loc>
+    <lastmod>2025-03-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://zonmo.com.tw/#services</loc>
+    <lastmod>2025-03-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://zonmo.com.tw/#projects</loc>
+    <lastmod>2025-03-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://zonmo.com.tw/#contact</loc>
+    <lastmod>2025-03-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+</urlset>`)
+})
+
 // Layout renderer
 const renderer = jsxRenderer(({ children, title }: { children?: any; title?: string }) => (
   <html lang="zh-TW">
     <head>
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>{title || '中華鋁模有限公司 | CHUN HAN Engineering'}</title>
-      <meta name="description" content="中華鋁模有限公司 - 專業鋁製模板設計、製造及安裝，提供高效、經濟的建築模板解決方案。永續建築，高效施工。" />
+      <title>{title || '中華鋁模有限公司 | 鋁合金模板工程專家'}</title>
+      <meta name="description" content="中華鋁模有限公司，專業鋁合金模板設計、製造與安裝，承接住宅、商業及公共建設模板工程。新北市土城、台北市松山等地區實績豐富，提供高效、耐用、環保的建築模板解決方案，歡迎洽詢。" />
+      <meta name="keywords" content="鋁模板,鋁合金模板,模板工程,中華鋁模,建築模板,系統模板,台北模板工程,新北模板工程,鋁模出租,模板安裝" />
+      <meta name="author" content="中華鋁模有限公司" />
+      <meta name="robots" content="index, follow" />
+      <link rel="canonical" href="https://zonmo.com.tw/" />
+
+      {/* Open Graph (Facebook / LINE 分享預覽) */}
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="https://zonmo.com.tw/" />
+      <meta property="og:title" content="中華鋁模有限公司 | 鋁合金模板工程專家" />
+      <meta property="og:description" content="專業鋁合金模板設計、製造與安裝，承接住宅、商業及公共建設模板工程。二十餘年豐富實績，歡迎洽詢合作。" />
+      <meta property="og:site_name" content="中華鋁模有限公司" />
+      <meta property="og:locale" content="zh_TW" />
+
+      {/* Twitter Card */}
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:title" content="中華鋁模有限公司 | 鋁合金模板工程專家" />
+      <meta name="twitter:description" content="專業鋁合金模板設計、製造與安裝，二十餘年豐富工程實績。" />
+
+      {/* 結構化資料 JSON-LD */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "中華鋁模有限公司",
+        "alternateName": "CHUN HAN Engineering Co., Ltd.",
+        "url": "https://zonmo.com.tw",
+        "telephone": "+886-2-2691-3585",
+        "description": "專業鋁合金模板設計、製造與安裝，承接住宅、商業及公共建設模板工程。",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "TW",
+          "addressRegion": "新北市"
+        },
+        "foundingDate": "2000",
+        "areaServed": ["台北市", "新北市", "桃園市"],
+        "serviceType": ["鋁合金模板工程", "模板設計", "模板製造", "模板安裝"]
+      })}} />
+
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;800;900&display=swap" />
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
