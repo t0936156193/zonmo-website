@@ -824,6 +824,207 @@ section { padding: 100px 0; }
 .projects-header .section-divider { margin: 18px auto; }
 .projects-header .section-desc { max-width: 620px; }
 
+/* ── 工程實績表格 ── */
+.records-wrap {
+  margin-bottom: 56px;
+  border: 1px solid var(--light);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.records-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--dark);
+  color: var(--white);
+  padding: 16px 28px;
+  font-size: .95rem;
+  font-weight: 700;
+  letter-spacing: .5px;
+}
+.records-header i { color: var(--accent); font-size: 16px; }
+.records-badge {
+  margin-left: auto;
+  background: var(--accent);
+  color: var(--black);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 12px;
+  border-radius: 2px;
+  letter-spacing: 1px;
+}
+
+/* 表頭列 */
+.records-thead {
+  display: flex;
+  align-items: center;
+  background: var(--dark-2);
+  padding: 10px 28px;
+  gap: 0;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.records-thead .rec-col {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.35);
+}
+
+/* 資料列 */
+.records-row {
+  display: flex;
+  align-items: center;
+  padding: 18px 28px;
+  gap: 0;
+  border-bottom: 1px solid var(--light);
+  background: var(--white);
+  transition: background var(--transition);
+  opacity: 1 !important;   /* 覆蓋 fade-in 預設 */
+  transform: none !important;
+}
+.records-row:last-child { border-bottom: none; }
+.records-row:hover { background: var(--off-white); }
+
+/* 欄寬定義 */
+.rec-col { padding: 0 10px; }
+.rec-no     { width: 60px;  flex-shrink: 0; padding-left: 0; }
+.rec-name   { flex: 1;      min-width: 0; }
+.rec-owner  { width: 110px; flex-shrink: 0; }
+.rec-loc    { width: 130px; flex-shrink: 0; }
+.rec-floors { width: 170px; flex-shrink: 0; }
+.rec-amount { width: 130px; flex-shrink: 0; text-align: right; padding-right: 0; }
+
+/* 編號 */
+.rec-no-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px; height: 30px;
+  background: var(--dark);
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 900;
+  border-radius: 4px;
+  letter-spacing: .5px;
+}
+
+/* 工地名稱欄 */
+.rec-name-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+.rec-icon {
+  font-size: 14px;
+  color: var(--accent);
+  flex-shrink: 0;
+  width: 16px;
+}
+.rec-name-main {
+  font-size: .93rem;
+  font-weight: 700;
+  color: var(--dark);
+  line-height: 1.3;
+}
+.rec-name-sub {
+  font-size: .78rem;
+  color: var(--gray);
+  letter-spacing: .3px;
+}
+.rec-tag {
+  display: inline-block;
+  background: var(--off-white);
+  border: 1px solid var(--light);
+  color: var(--gray);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: 2px;
+  letter-spacing: .5px;
+}
+
+/* 業主 */
+.rec-owner-name {
+  font-size: .88rem;
+  font-weight: 600;
+  color: var(--dark-4);
+}
+
+/* 地點 */
+.rec-col.rec-loc {
+  font-size: .86rem;
+  color: var(--gray);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.rec-loc-icon { color: var(--accent); font-size: 11px; flex-shrink: 0; }
+
+/* 規模 */
+.rec-col.rec-floors {
+  font-size: .84rem;
+  color: var(--gray);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.rec-floors-icon { color: var(--steel); font-size: 11px; flex-shrink: 0; }
+
+/* 金額 */
+.rec-amount-val {
+  font-size: .95rem;
+  font-weight: 800;
+  color: var(--dark);
+  letter-spacing: .3px;
+}
+
+/* 施工照片區標題 */
+.photo-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--light);
+}
+.photo-section-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: .95rem;
+  font-weight: 700;
+  color: var(--dark);
+}
+.photo-section-label i { color: var(--accent); }
+.photo-section-note {
+  font-size: .85rem;
+  color: var(--gray);
+}
+
+/* RWD — 中小尺寸隱藏次要欄位 */
+@media (max-width: 960px) {
+  .rec-floors { display: none; }
+  .rec-amount { width: 110px; }
+}
+@media (max-width: 720px) {
+  .records-row,
+  .records-thead { padding: 14px 16px; }
+  .rec-owner  { display: none; }
+  .rec-loc    { width: 110px; }
+  .rec-amount { width: 90px; }
+  .rec-no     { width: 44px; }
+}
+@media (max-width: 540px) {
+  .rec-loc    { display: none; }
+  .rec-name   { padding-right: 0; }
+}
+
 /* Project info card */
 .project-info-card {
   display: flex;

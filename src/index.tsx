@@ -246,7 +246,7 @@ const Hero = () => (
         </div>
         <div class="stat-divider"></div>
         <div class="stat-item">
-          <div class="stat-number" data-target="5" data-suffix="+">0+</div>
+          <div class="stat-number" data-target="6" data-suffix="+">0+</div>
           <div class="stat-label">工程實績</div>
         </div>
         <div class="stat-divider"></div>
@@ -474,35 +474,152 @@ const photoData = [
   { src: '/static/photos/work-08.jpg', caption: '模板拆卸精細操作', tag: '拆模作業' },
 ]
 
+// 2025 工程實績資料
+const projectRecords = [
+  {
+    no: '01',
+    owner: '中華工程',
+    name: '中工雲宇宙產業園區新建工程',
+    subName: '模板工程（二）',
+    location: '新北市土城',
+    floors: '地上 16 層 / 地下 5 層',
+    amount: '2,700 萬',
+    tag: '產業園區',
+    icon: 'fas fa-industry',
+    type: '商業建築',
+  },
+  {
+    no: '02',
+    owner: '中華工程',
+    name: '鳴森院住宅新建工程',
+    subName: '鋁合金模板工程',
+    location: '台北市松山區',
+    floors: '地上 21 層 / 地下 4 層',
+    amount: '2 億 4,000 萬',
+    tag: '住宅建案',
+    icon: 'fas fa-building',
+    type: '住宅建築',
+  },
+  {
+    no: '03',
+    owner: '中華工程',
+    name: '鳴森院住宅新建工程',
+    subName: '模板工程',
+    location: '台北市松山區',
+    floors: '地下 4 層',
+    amount: '1 億 4,000 萬',
+    tag: '住宅建案',
+    icon: 'fas fa-building',
+    type: '住宅建築',
+  },
+  {
+    no: '04',
+    owner: '宏昇營造',
+    name: '大直軍事博物館',
+    subName: '模板工程',
+    location: '台北市大直',
+    floors: '地上 7 層 / 地下 3 層',
+    amount: '7,000 萬',
+    tag: '公共建設',
+    icon: 'fas fa-landmark',
+    type: '公共建築',
+  },
+  {
+    no: '05',
+    owner: '中華工程',
+    name: '廣三滯洪池工程',
+    subName: '模板工程',
+    location: '新北市新莊',
+    floors: '地下滯洪池',
+    amount: '2,700 萬',
+    tag: '公共建設',
+    icon: 'fas fa-water',
+    type: '水利工程',
+  },
+  {
+    no: '06',
+    owner: '萬鼎工程',
+    name: '涵洞／排水工程',
+    subName: '模板工程',
+    location: '桃園市龜山',
+    floors: '涵洞工程',
+    amount: '7,000 萬',
+    tag: '基礎工程',
+    icon: 'fas fa-hard-hat',
+    type: '土木工程',
+  },
+]
+
 const Projects = () => (
   <section id="projects" class="projects">
     <div class="container">
       {/* Header */}
       <div class="projects-header fade-in">
         <span class="section-label">PROJECTS</span>
-        <h2 class="section-title">專業施工，實力說話</h2>
+        <h2 class="section-title">工程實績，品質驗證</h2>
         <div class="section-divider"></div>
-        <p class="section-desc" style="margin:0 auto">每一個工程都是我們對品質承諾的具體展現——鋁模板精準安裝、嚴格施工管控，讓建築工程更高效、更優質。</p>
+        <p class="section-desc" style="margin:0 auto">中華鋁模承接多項大型建築工程，涵蓋住宅、商業、公共建設及土木工程，以精湛技術與嚴格品質管控，為每項工程提供最佳解決方案。</p>
       </div>
 
-      {/* Project info card */}
-      <div class="project-info-card fade-in">
-        <div class="pic-badge">
-          <i class="fas fa-city"></i>
-          <span>鳴森院建案</span>
-          <div class="pic-badge-tag">住宅建案</div>
+      {/* 2025 工程實績列表 */}
+      <div class="records-wrap fade-in">
+        <div class="records-header">
+          <i class="fas fa-clipboard-list"></i>
+          <span>2025 年度工程實績一覽</span>
+          <div class="records-badge">{projectRecords.length} 件</div>
         </div>
-        <div class="pic-desc">
-          <h3>鳴森院建案 — 鋁合金系統模板全流程</h3>
-          <p>採用中華鋁模全套鋁合金系統模板服務，涵蓋模板設計規劃、現場安裝施工到工程完工拆卸。充分展現鋁模板系統高效施工、混凝土表面平整光滑之優勢，大幅縮短施工週期，提升整體工程品質。配合佑昇鷹架安全鷹架搭設，確保工地全程高效運作。</p>
-          <div class="project-tags">
-            <span class="project-tag"><i class="fas fa-check"></i> 鋁合金系統模板</span>
-            <span class="project-tag"><i class="fas fa-check"></i> 鷹架工程</span>
-            <span class="project-tag"><i class="fas fa-check"></i> 住宅建築</span>
-            <span class="project-tag"><i class="fas fa-check"></i> 精密測量</span>
-            <span class="project-tag"><i class="fas fa-check"></i> 拆模作業</span>
+        <div class="records-table">
+          {/* Table Header */}
+          <div class="records-thead">
+            <div class="rec-col rec-no">編號</div>
+            <div class="rec-col rec-name">工地名稱</div>
+            <div class="rec-col rec-owner">業主</div>
+            <div class="rec-col rec-loc">地點</div>
+            <div class="rec-col rec-floors">規模</div>
+            <div class="rec-col rec-amount">合約金額</div>
           </div>
+          {/* Table Rows */}
+          {projectRecords.map((r, i) => (
+            <div class="records-row fade-in" key={i}>
+              <div class="rec-col rec-no">
+                <span class="rec-no-num">{r.no}</span>
+              </div>
+              <div class="rec-col rec-name">
+                <div class="rec-name-wrap">
+                  <i class={r.icon + ' rec-icon'}></i>
+                  <div>
+                    <div class="rec-name-main">{r.name}</div>
+                    <div class="rec-name-sub">{r.subName}</div>
+                  </div>
+                </div>
+                <span class="rec-tag">{r.tag}</span>
+              </div>
+              <div class="rec-col rec-owner">
+                <span class="rec-owner-name">{r.owner}</span>
+              </div>
+              <div class="rec-col rec-loc">
+                <i class="fas fa-map-marker-alt rec-loc-icon"></i>
+                {r.location}
+              </div>
+              <div class="rec-col rec-floors">
+                <i class="fas fa-layer-group rec-floors-icon"></i>
+                {r.floors}
+              </div>
+              <div class="rec-col rec-amount">
+                <span class="rec-amount-val">{r.amount}</span>
+              </div>
+            </div>
+          ))}
         </div>
+      </div>
+
+      {/* 施工照片區標題 */}
+      <div class="photo-section-header fade-in">
+        <div class="photo-section-label">
+          <i class="fas fa-camera"></i>
+          <span>施工實況照片</span>
+        </div>
+        <p class="photo-section-note">鳴森院建案 — 鋁合金系統模板全流程紀錄</p>
       </div>
 
       {/* Main Slider */}
