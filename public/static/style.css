@@ -501,7 +501,12 @@ section { padding: 100px 0; }
   gap: 80px;
   align-items: center;
 }
-.about-visual { position: relative; }
+.about-visual {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: visible;
+}
 .about-img-box {
   background: var(--dark);
   border-radius: var(--radius-lg);
@@ -1723,7 +1728,9 @@ footer {
   .services-cards { grid-template-columns: 1fr 1fr; }
   .service-card-span { grid-column: span 1; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
-  .about-badge-corner { top: 14px; right: 14px; } /* 平板維持原定位 */
+  /* 平板（960px）：badge 收進圖片右上角內側 */
+  .about-visual { overflow: visible; }
+  .about-badge-corner { top: 12px; right: 12px; }
   .project-info-card { flex-direction: column; gap: 20px; }
   .pic-badge {
     flex-direction: row;
@@ -1740,20 +1747,19 @@ footer {
   .nav-links { display: none; }
   .hamburger { display: flex; }
 
-  /* About — 手機版徽章改為圖片下方獨立行，不再絕對定位 */
+  /* About 手機版：徽章完全脫離絕對定位，流式排在圖片正下方靠右 */
   .about-visual {
-    padding: 0;             /* 取消之前的 padding hack */
+    padding: 0;
     display: flex;
     flex-direction: column;
-    gap: 0;
   }
   .about-badge-corner {
-    position: static;       /* 脫離 absolute，回歸文流 */
-    align-self: flex-end;   /* 靠右對齊 */
+    position: static !important;  /* 強制脫離 absolute */
+    top: auto !important;
+    right: auto !important;
+    align-self: flex-end;         /* flex column → 靠右 */
     margin-top: 10px;
-    padding: 10px 16px;
-    border-radius: var(--radius);
-    top: auto; right: auto;
+    padding: 10px 18px;
   }
   .about-badge-corner .num { font-size: 1.5rem; }
   .about-badge-corner .txt { font-size: 9px; }
