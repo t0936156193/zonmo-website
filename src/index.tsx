@@ -126,6 +126,81 @@ if (container) {
     container.appendChild(s);
   }
 }
+
+/* ---- Photo Slider ---- */
+(function() {
+  const slides   = document.querySelectorAll('#mainSlider .slide');
+  const dots     = document.querySelectorAll('#sliderDots .dot');
+  const thumbs   = document.querySelectorAll('#thumbStrip .thumb');
+  const counter  = document.getElementById('sliderCounter');
+  const total    = slides.length;
+  let current    = 0;
+  let autoTimer  = null;
+
+  function goTo(idx) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    thumbs[current].classList.remove('active');
+    current = (idx + total) % total;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+    thumbs[current].classList.add('active');
+    counter.textContent = (current + 1) + ' / ' + total;
+    // scroll thumb into view
+    thumbs[current].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+  }
+
+  function startAuto() { autoTimer = setInterval(() => goTo(current + 1), 4000); }
+  function stopAuto()  { clearInterval(autoTimer); }
+
+  document.getElementById('sliderNext').addEventListener('click', () => { stopAuto(); goTo(current + 1); startAuto(); });
+  document.getElementById('sliderPrev').addEventListener('click', () => { stopAuto(); goTo(current - 1); startAuto(); });
+
+  dots.forEach((d, i) => d.addEventListener('click', () => { stopAuto(); goTo(i); startAuto(); }));
+  thumbs.forEach((t, i) => t.addEventListener('click', () => { stopAuto(); goTo(i); startAuto(); }));
+
+  // swipe support
+  let touchX = 0;
+  const sliderEl = document.getElementById('mainSlider');
+  sliderEl.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive: true });
+  sliderEl.addEventListener('touchend',   e => {
+    const dx = e.changedTouches[0].clientX - touchX;
+    if (Math.abs(dx) > 40) { stopAuto(); goTo(current + (dx < 0 ? 1 : -1)); startAuto(); }
+  });
+
+  startAuto();
+
+  /* ---- Lightbox ---- */
+  const photoSrcs  = Array.from(slides).map(s => s.querySelector('img').src);
+  const photoCaps  = Array.from(slides).map(s => s.querySelector('.slide-text').textContent);
+  const lb         = document.getElementById('lightbox');
+  const lbImg      = document.getElementById('lbImg');
+  const lbCaption  = document.getElementById('lbCaption');
+  let lbCurrent    = 0;
+
+  function openLb(idx) {
+    lbCurrent = idx;
+    lbImg.src = photoSrcs[idx];
+    lbCaption.textContent = photoCaps[idx];
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLb() { lb.classList.remove('open'); document.body.style.overflow = ''; }
+  function lbGo(d)   { lbCurrent = (lbCurrent + d + total) % total; lbImg.src = photoSrcs[lbCurrent]; lbCaption.textContent = photoCaps[lbCurrent]; }
+
+  slides.forEach((s, i) => s.querySelector('img').addEventListener('click', () => openLb(i)));
+  thumbs.forEach((t, i) => { /* double-click or open via slider */ });
+  document.getElementById('lbClose').addEventListener('click', closeLb);
+  document.getElementById('lbPrev').addEventListener('click',  () => lbGo(-1));
+  document.getElementById('lbNext').addEventListener('click',  () => lbGo(1));
+  lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape')     closeLb();
+    if (e.key === 'ArrowLeft')  lbGo(-1);
+    if (e.key === 'ArrowRight') lbGo(1);
+  });
+})();
 `
 
 // ── Hero Section ─────────────────────────────────────────────────────────────
@@ -369,46 +444,93 @@ const Services = () => (
 )
 
 // ── Projects Section ──────────────────────────────────────────────────────────
+const photoData = [
+  { src: '/static/photos/work-01.jpg', caption: '鋁模板現場組裝作業', tag: '模板安裝' },
+  { src: '/static/photos/work-02.jpg', caption: '高空鷹架精密施工中', tag: '鷹架工程' },
+  { src: '/static/photos/work-03.jpg', caption: '鋁模板大面積牆面安裝', tag: '模板安裝' },
+  { src: '/static/photos/work-04.jpg', caption: '工地多人協同作業', tag: '施工現場' },
+  { src: '/static/photos/work-05.jpg', caption: '模板精準對位施工', tag: '精密施工' },
+  { src: '/static/photos/work-06.jpg', caption: '天花板底模安裝作業', tag: '天花板模板' },
+  { src: '/static/photos/work-07.jpg', caption: '室內雷射水平校準', tag: '精密測量' },
+  { src: '/static/photos/work-08.jpg', caption: '模板拆卸精細操作', tag: '拆模作業' },
+]
+
 const Projects = () => (
   <section id="projects" class="projects">
     <div class="container">
+      {/* Header */}
       <div class="projects-header fade-in">
         <span class="section-label">工程實績</span>
-        <h2 class="section-title">打造每一個高品質工程</h2>
+        <h2 class="section-title">專業施工，實力說話</h2>
         <div class="section-divider"></div>
+        <p class="section-desc" style="margin:0 auto">每一個工程都是我們對品質承諾的具體展現——鋁模板精準安裝、嚴格施工管控，讓建築工程更高效、更優質。</p>
       </div>
-      <div class="project-showcase fade-in">
-        <div class="project-visual">
-          <i class="fas fa-city project-visual-icon"></i>
-          <div class="project-visual-content">
-            <div class="project-name-badge">鳴森院</div>
-            <div class="project-type-tag">住宅建案</div>
-          </div>
+
+      {/* Project info card */}
+      <div class="project-info-card fade-in">
+        <div class="pic-badge">
+          <i class="fas fa-city"></i>
+          <span>鳴森院建案</span>
+          <div class="pic-badge-tag">住宅建案</div>
         </div>
-        <div class="project-info">
-          <h3>鳴森院建案</h3>
-          <p>
-            採用中華鋁模全套鋁合金系統模板服務，涵蓋模板設計規劃、現場安裝施工到工程完工拆卸。
-            本案充分展現鋁模板系統高效施工、混凝土表面平整光滑之優勢，
-            大幅縮短施工週期，提升整體工程品質。
-          </p>
-          <p>
-            配合佑昇鷹架提供的安全鷹架搭設，確保工地全程安全高效運作，
-            是中華鋁模專業實力的具體展現。
-          </p>
+        <div class="pic-desc">
+          <h3>鳴森院建案 — 鋁合金系統模板全流程</h3>
+          <p>採用中華鋁模全套鋁合金系統模板服務，涵蓋模板設計規劃、現場安裝施工到工程完工拆卸。充分展現鋁模板系統高效施工、混凝土表面平整光滑之優勢，大幅縮短施工週期，提升整體工程品質。配合佑昇鷹架安全鷹架搭設，確保工地全程高效運作。</p>
           <div class="project-tags">
             <span class="project-tag"><i class="fas fa-check"></i> 鋁合金系統模板</span>
             <span class="project-tag"><i class="fas fa-check"></i> 鷹架工程</span>
             <span class="project-tag"><i class="fas fa-check"></i> 住宅建築</span>
-            <span class="project-tag"><i class="fas fa-check"></i> 混凝土施工</span>
+            <span class="project-tag"><i class="fas fa-check"></i> 精密測量</span>
+            <span class="project-tag"><i class="fas fa-check"></i> 拆模作業</span>
           </div>
         </div>
       </div>
-      <div class="more-projects-note fade-in">
-        <p>
-          <strong>持續累積更多工程實績中</strong>——如欲了解詳細工程案例，歡迎
-          <a href="#contact" style="color:var(--secondary);font-weight:600">聯絡我們</a>洽詢。
-        </p>
+
+      {/* Main Slider */}
+      <div class="slider-wrap fade-in">
+        <div class="slider" id="mainSlider">
+          {photoData.map((p, i) => (
+            <div class={`slide${i === 0 ? ' active' : ''}`} key={i}>
+              <img src={p.src} alt={p.caption} loading={i === 0 ? 'eager' : 'lazy'} />
+              <div class="slide-caption">
+                <span class="slide-tag">{p.tag}</span>
+                <span class="slide-text">{p.caption}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+        <button class="slider-btn slider-prev" id="sliderPrev" aria-label="上一張">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="slider-btn slider-next" id="sliderNext" aria-label="下一張">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+        <div class="slider-dots" id="sliderDots">
+          {photoData.map((_, i) => (
+            <button class={`dot${i === 0 ? ' active' : ''}`} data-index={i} key={i} aria-label={`第${i+1}張`}></button>
+          ))}
+        </div>
+        <div class="slider-counter" id="sliderCounter">1 / {photoData.length}</div>
+      </div>
+
+      {/* Thumbnail Strip */}
+      <div class="thumb-strip fade-in" id="thumbStrip">
+        {photoData.map((p, i) => (
+          <div class={`thumb${i === 0 ? ' active' : ''}`} data-index={i} key={i}>
+            <img src={p.src} alt={p.caption} loading="lazy" />
+          </div>
+        ))}
+      </div>
+
+      {/* Lightbox */}
+      <div id="lightbox" class="lightbox-overlay">
+        <button class="lightbox-close" id="lbClose"><i class="fas fa-times"></i></button>
+        <button class="lightbox-nav lightbox-prev" id="lbPrev"><i class="fas fa-chevron-left"></i></button>
+        <button class="lightbox-nav lightbox-next" id="lbNext"><i class="fas fa-chevron-right"></i></button>
+        <div class="lightbox-img-wrap">
+          <img id="lbImg" src="" alt="" />
+          <div class="lightbox-caption" id="lbCaption"></div>
+        </div>
       </div>
     </div>
   </section>
