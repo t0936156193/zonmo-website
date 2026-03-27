@@ -418,24 +418,38 @@ const Services = () => (
             <p>依工程需求量身規劃鋁合金模板系統，優化結構配置，提供最佳施工方案。</p>
           </div>
           <div class="service-card">
-            <div class="service-card-icon"><i class="fas fa-industry"></i></div>
-            <h4>模板製造</h4>
-            <p>採用高強度鋁合金材料，精密加工製造，確保模板穩定性與高承載力。</p>
-          </div>
-          <div class="service-card">
             <div class="service-card-icon"><i class="fas fa-hard-hat"></i></div>
             <h4>現場安裝</h4>
             <p>專業施工團隊到場安裝，流程標準化操作，保障施工安全性與工程進度。</p>
           </div>
-          <div class="service-card">
+          <div class="service-card service-card-span">
             <div class="service-card-icon"><i class="fas fa-tools"></i></div>
             <h4>拆卸維護</h4>
             <p>完工後系統性拆卸清潔，模板回收保養，為下次工程備用，實現可持續利用。</p>
           </div>
-          <div class="service-card service-card-span">
-            <div class="service-card-icon"><i class="fas fa-hard-hat"></i></div>
-            <h4>專業施工架（佑昇鷹架 合作服務）</h4>
-            <p>與佑昇鷹架策略合作，提供完整鷹架搭設服務，搭配鋁模板施工，一站式承接各類工程需求，確保工地安全效率。</p>
+          {/* 協力合作廠商 */}
+          <div class="service-card service-card-span partner-card">
+            <div class="partner-card-header">
+              <i class="fas fa-handshake"></i>
+              <span>協力合作廠商</span>
+            </div>
+            <div class="partner-card-body">
+              <div class="partner-item">
+                <div class="partner-item-icon"><i class="fas fa-hard-hat"></i></div>
+                <div class="partner-item-text">
+                  <h5>佑昇鷹架</h5>
+                  <p>專業鷹架搭設服務，搭配鋁模板施工，提供完整安全施工平台，確保工地全程安全高效運作。</p>
+                </div>
+              </div>
+              <div class="partner-divider"></div>
+              <div class="partner-item">
+                <div class="partner-item-icon"><i class="fas fa-wrench"></i></div>
+                <div class="partner-item-text">
+                  <h5>禾鋒鋼筋</h5>
+                  <p>鋼筋加工與配料專業廠商，與中華鋁模緊密協作，提供高品質鋼筋材料，確保結構安全穩固。</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -737,7 +751,8 @@ const Footer = () => (
             <li><a href="#services"><i class="fas fa-chevron-right"></i> 模板設計規劃</a></li>
             <li><a href="#services"><i class="fas fa-chevron-right"></i> 現場安裝施工</a></li>
             <li><a href="#services"><i class="fas fa-chevron-right"></i> 拆卸維護</a></li>
-            <li><a href="#services"><i class="fas fa-chevron-right"></i> 專業施工架</a></li>
+            <li><a href="#services"><i class="fas fa-chevron-right"></i> 佑昇鷹架（協力）</a></li>
+            <li><a href="#services"><i class="fas fa-chevron-right"></i> 禾鋒鋼筋（協力）</a></li>
           </ul>
         </div>
         <div class="footer-col">
