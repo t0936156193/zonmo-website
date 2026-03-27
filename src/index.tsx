@@ -587,7 +587,6 @@ const Projects = () => (
         <div class="records-header">
           <i class="fas fa-clipboard-list"></i>
           <span>工程實績一覽</span>
-          <div class="records-badge">{projectRecords.length} 件</div>
         </div>
         <div class="records-table">
           {/* Table Header */}
