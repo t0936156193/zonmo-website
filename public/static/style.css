@@ -1011,9 +1011,72 @@ section { padding: 100px 0; }
   .rec-amount { width: 90px; }
   .rec-no     { width: 44px; }
 }
+
+/* 手機版：卡片式版型，完全取代表格橫列 */
 @media (max-width: 540px) {
-  .rec-loc    { display: none; }
-  .rec-name   { padding-right: 0; }
+  /* 隱藏表頭 */
+  .records-thead { display: none; }
+
+  /* 每列改為垂直卡片 */
+  .records-row {
+    display: block;
+    padding: 16px 18px;
+    border-bottom: 1px solid var(--light);
+    position: relative;
+  }
+
+  /* 所有 col 改回正常 block */
+  .rec-col {
+    display: block;
+    width: auto !important;
+    padding: 0;
+    text-align: left !important;
+  }
+
+  /* 隱藏地點與規模欄（卡片內嵌） */
+  .rec-col.rec-loc,
+  .rec-col.rec-floors { display: none; }
+
+  /* 編號：右上角小標籤 */
+  .rec-col.rec-no {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+  }
+  .rec-no-num {
+    width: 26px;
+    height: 26px;
+    font-size: 10px;
+  }
+
+  /* 名稱區 */
+  .rec-col.rec-name {
+    padding-right: 36px; /* 避開右上角編號 */
+  }
+  .rec-name-wrap { margin-bottom: 4px; }
+  .rec-name-main { font-size: .9rem; }
+  .rec-name-sub  { font-size: .75rem; }
+
+  /* 金額：名稱下方獨立一行 */
+  .rec-col.rec-amount {
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px dashed var(--light);
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .rec-col.rec-amount::before {
+    content: '合約金額';
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--gray);
+    text-transform: uppercase;
+  }
+  .rec-amount-val {
+    font-size: .92rem;
+  }
 }
 
 /* Project info card */
