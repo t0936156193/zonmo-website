@@ -137,7 +137,7 @@ if (container) {
   let current    = 0;
   let autoTimer  = null;
 
-  function goTo(idx) {
+  function goTo(idx, scrollThumb) {
     slides[current].classList.remove('active');
     dots[current].classList.remove('active');
     thumbs[current].classList.remove('active');
@@ -146,18 +146,20 @@ if (container) {
     dots[current].classList.add('active');
     thumbs[current].classList.add('active');
     counter.textContent = (current + 1) + ' / ' + total;
-    // scroll thumb into view
-    thumbs[current].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    // 只有使用者主動點擊縮圖/按鈕時才捲動縮圖列，避免頁面自動跳位
+    if (scrollThumb) {
+      thumbs[current].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
   }
 
-  function startAuto() { autoTimer = setInterval(() => goTo(current + 1), 4000); }
+  function startAuto() { autoTimer = setInterval(() => goTo(current + 1, false), 4000); }
   function stopAuto()  { clearInterval(autoTimer); }
 
-  document.getElementById('sliderNext').addEventListener('click', () => { stopAuto(); goTo(current + 1); startAuto(); });
-  document.getElementById('sliderPrev').addEventListener('click', () => { stopAuto(); goTo(current - 1); startAuto(); });
+  document.getElementById('sliderNext').addEventListener('click', () => { stopAuto(); goTo(current + 1, true); startAuto(); });
+  document.getElementById('sliderPrev').addEventListener('click', () => { stopAuto(); goTo(current - 1, true); startAuto(); });
 
-  dots.forEach((d, i) => d.addEventListener('click', () => { stopAuto(); goTo(i); startAuto(); }));
-  thumbs.forEach((t, i) => t.addEventListener('click', () => { stopAuto(); goTo(i); startAuto(); }));
+  dots.forEach((d, i) => d.addEventListener('click', () => { stopAuto(); goTo(i, true); startAuto(); }));
+  thumbs.forEach((t, i) => t.addEventListener('click', () => { stopAuto(); goTo(i, false); startAuto(); }));
 
   // swipe support
   let touchX = 0;
@@ -165,7 +167,7 @@ if (container) {
   sliderEl.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive: true });
   sliderEl.addEventListener('touchend',   e => {
     const dx = e.changedTouches[0].clientX - touchX;
-    if (Math.abs(dx) > 40) { stopAuto(); goTo(current + (dx < 0 ? 1 : -1)); startAuto(); }
+    if (Math.abs(dx) > 40) { stopAuto(); goTo(current + (dx < 0 ? 1 : -1), false); startAuto(); }
   });
 
   startAuto();
