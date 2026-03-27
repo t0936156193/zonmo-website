@@ -266,12 +266,15 @@ const PartnersBar = () => (
   <div class="partners-bar">
     <div class="container">
       <div class="partners-inner">
-        <span class="partners-label">合作夥伴</span>
+        <span class="partners-label">協力合作夥伴</span>
         <div class="partner-badge">
-          <i class="fas fa-hard-hat"></i>佑昇鷹架
+          <img src="/static/logo-yoson.jpg" alt="佑昇鷹架" class="partner-badge-logo" />
+          <span>佑昇鷹架</span>
         </div>
+        <div class="partner-badge-sep"></div>
         <div class="partner-badge">
-          <i class="fas fa-tools"></i>禾鋒鋼筋
+          <img src="/static/logo-hefeng.jpg" alt="禾鋒鋼筋" class="partner-badge-logo" />
+          <span>禾鋒鋼筋</span>
         </div>
       </div>
     </div>
@@ -435,15 +438,15 @@ const Services = () => (
             </div>
             <div class="partner-card-body">
               <div class="partner-item">
-                <div class="partner-item-icon"><i class="fas fa-hard-hat"></i></div>
+                <img src="/static/logo-yoson.jpg" alt="佑昇鷹架" class="partner-logo-img" />
                 <div class="partner-item-text">
-                  <h5>佑昇鷹架</h5>
+                  <h5>佑昇鷹架 <small>YO SON SCAFFOLDING</small></h5>
                   <p>專業鷹架搭設服務，搭配鋁模板施工，提供完整安全施工平台，確保工地全程安全高效運作。</p>
                 </div>
               </div>
               <div class="partner-divider"></div>
               <div class="partner-item">
-                <div class="partner-item-icon"><i class="fas fa-wrench"></i></div>
+                <img src="/static/logo-hefeng.jpg" alt="禾鋒鋼筋" class="partner-logo-img" />
                 <div class="partner-item-text">
                   <h5>禾鋒鋼筋</h5>
                   <p>鋼筋加工與配料專業廠商，與中華鋁模緊密協作，提供高品質鋼筋材料，確保結構安全穩固。</p>
