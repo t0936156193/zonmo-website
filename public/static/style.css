@@ -1724,6 +1724,7 @@ footer {
   .service-card-span { grid-column: span 1; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .about-badge-corner { top: 14px; right: 14px; }
+  .about-visual { padding-top: 14px; padding-right: 14px; } /* 預留徽章空間 */
   .project-info-card { flex-direction: column; gap: 20px; }
   .pic-badge {
     flex-direction: row;
@@ -1739,6 +1740,19 @@ footer {
   section { padding: 64px 0; }
   .nav-links { display: none; }
   .hamburger { display: flex; }
+
+  /* About — 修正 2000 年徽章重疊問題 */
+  .about-visual {
+    padding-top: 16px;
+    padding-right: 16px;
+  }
+  .about-badge-corner {
+    top: 0;
+    right: 0;
+    padding: 10px 14px;
+  }
+  .about-badge-corner .num { font-size: 1.4rem; }
+  .about-badge-corner .txt { font-size: 9px; }
   .slider-wrap { aspect-ratio: 1/1; }
   .slider-btn  { width: 36px; height: 36px; font-size: 13px; }
   .thumb { width: 60px; height: 44px; }
