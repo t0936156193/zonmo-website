@@ -63,6 +63,7 @@ const renderer = jsxRenderer(({ children, title }: { children?: any; title?: str
       <meta name="keywords" content="鋁模板,鋁合金模板,模板工程,中華鋁模,建築模板,系統模板,台北模板工程,新北模板工程,鋁模出租,模板安裝" />
       <meta name="author" content="中華鋁模有限公司" />
       <meta name="robots" content="index, follow" />
+      <meta name="google-site-verification" content="Ll-yl3BPYIUyH3Seo7deWAz9BwkrG6YD_fUNLJT8OQU" />
       <link rel="canonical" href="https://zonmo.com.tw/" />
 
       {/* Open Graph (Facebook / LINE 分享預覽) */}
