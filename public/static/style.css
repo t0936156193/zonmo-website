@@ -541,7 +541,7 @@ section { padding: 100px 0; }
   text-align: center;
   color: var(--white);
   z-index: 1;
-  padding: 32px;
+  padding: 32px 32px 64px 32px; /* 底部留空給徽章 */
 }
 .about-img-text h3 {
   font-size: 1.5rem;
@@ -551,12 +551,14 @@ section { padding: 100px 0; }
 }
 .about-img-text p { font-size: .88rem; opacity: .55; line-height: 1.6; }
 
+/* 徽章固定在圖片盒右下角內側，不管螢幕寬度都不會跑出去或重疊 */
 .about-badge-corner {
   position: absolute;
-  top: -14px; right: -14px;
+  bottom: 16px; right: 16px;
+  top: auto;
   background: var(--accent);
   color: var(--black);
-  padding: 14px 18px;
+  padding: 12px 16px;
   border-radius: var(--radius);
   text-align: center;
   font-weight: 900;
@@ -1728,9 +1730,7 @@ footer {
   .services-cards { grid-template-columns: 1fr 1fr; }
   .service-card-span { grid-column: span 1; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
-  /* 平板（960px）：badge 收進圖片右上角內側 */
-  .about-visual { overflow: visible; }
-  .about-badge-corner { top: 12px; right: 12px; }
+  /* badge 已在圖片盒內 bottom/right 定位，無需額外調整 */
   .project-info-card { flex-direction: column; gap: 20px; }
   .pic-badge {
     flex-direction: row;
@@ -1747,21 +1747,13 @@ footer {
   .nav-links { display: none; }
   .hamburger { display: flex; }
 
-  /* About 手機版：徽章完全脫離絕對定位，流式排在圖片正下方靠右 */
-  .about-visual {
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-  }
+  /* About 手機版：badge 在圖片盒內，縮小尺寸 */
   .about-badge-corner {
-    position: static !important;  /* 強制脫離 absolute */
-    top: auto !important;
-    right: auto !important;
-    align-self: flex-end;         /* flex column → 靠右 */
-    margin-top: 10px;
-    padding: 10px 18px;
+    bottom: 10px;
+    right: 10px;
+    padding: 8px 12px;
   }
-  .about-badge-corner .num { font-size: 1.5rem; }
+  .about-badge-corner .num { font-size: 1.4rem; }
   .about-badge-corner .txt { font-size: 9px; }
   .slider-wrap { aspect-ratio: 1/1; }
   .slider-btn  { width: 36px; height: 36px; font-size: 13px; }

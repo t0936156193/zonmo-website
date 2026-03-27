@@ -318,10 +318,10 @@ const About = () => (
               <br />
               <p style="font-size:.8rem;opacity:.6">統一編號：54738771</p>
             </div>
-          </div>
-          <div class="about-badge-corner">
-            <div class="num">2000</div>
-            <div class="txt">年創立</div>
+            <div class="about-badge-corner">
+              <div class="num">2000</div>
+              <div class="txt">年創立</div>
+            </div>
           </div>
         </div>
         <div class="about-text fade-in">
