@@ -565,7 +565,7 @@ const Projects = () => (
       <div class="records-wrap fade-in">
         <div class="records-header">
           <i class="fas fa-clipboard-list"></i>
-          <span>2025 年度工程實績一覽</span>
+          <span>工程實績一覽</span>
           <div class="records-badge">{projectRecords.length} 件</div>
         </div>
         <div class="records-table">
@@ -573,7 +573,6 @@ const Projects = () => (
           <div class="records-thead">
             <div class="rec-col rec-no">編號</div>
             <div class="rec-col rec-name">工地名稱</div>
-            <div class="rec-col rec-owner">業主</div>
             <div class="rec-col rec-loc">地點</div>
             <div class="rec-col rec-floors">規模</div>
             <div class="rec-col rec-amount">合約金額</div>
@@ -593,9 +592,6 @@ const Projects = () => (
                   </div>
                 </div>
                 <span class="rec-tag">{r.tag}</span>
-              </div>
-              <div class="rec-col rec-owner">
-                <span class="rec-owner-name">{r.owner}</span>
               </div>
               <div class="rec-col rec-loc">
                 <i class="fas fa-map-marker-alt rec-loc-icon"></i>

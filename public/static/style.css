@@ -892,7 +892,6 @@ section { padding: 100px 0; }
 .rec-col { padding: 0 10px; }
 .rec-no     { width: 60px;  flex-shrink: 0; padding-left: 0; }
 .rec-name   { flex: 1;      min-width: 0; }
-.rec-owner  { width: 110px; flex-shrink: 0; }
 .rec-loc    { width: 130px; flex-shrink: 0; }
 .rec-floors { width: 170px; flex-shrink: 0; }
 .rec-amount { width: 130px; flex-shrink: 0; text-align: right; padding-right: 0; }
@@ -945,13 +944,6 @@ section { padding: 100px 0; }
   padding: 2px 10px;
   border-radius: 2px;
   letter-spacing: .5px;
-}
-
-/* 業主 */
-.rec-owner-name {
-  font-size: .88rem;
-  font-weight: 600;
-  color: var(--dark-4);
 }
 
 /* 地點 */
@@ -1015,7 +1007,6 @@ section { padding: 100px 0; }
 @media (max-width: 720px) {
   .records-row,
   .records-thead { padding: 14px 16px; }
-  .rec-owner  { display: none; }
   .rec-loc    { width: 110px; }
   .rec-amount { width: 90px; }
   .rec-no     { width: 44px; }
