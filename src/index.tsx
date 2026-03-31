@@ -581,10 +581,8 @@ const photoData = [
   { src: '/static/photos/work-08.jpg', caption: '模板拆卸精細操作', tag: '拆模作業' },
   { src: '/static/photos/work-09.jpg', caption: '鋁合金模板牆體組立施工', tag: '模板安裝' },
   { src: '/static/photos/work-10.jpg', caption: '鋁模板系統備料整備', tag: '材料管理' },
-  { src: '/static/photos/work-11.jpg', caption: '清水混凝土脫模後牆面', tag: '完工成果' },
   { src: '/static/photos/work-12.jpg', caption: '天花板鋁模板底層施工', tag: '樓板模板' },
   { src: '/static/photos/work-13.jpg', caption: '鋁模板節點接合細部', tag: '精密施工' },
-  { src: '/static/photos/work-14.jpg', caption: '多樓層鋁模板施工進度', tag: '大型工程' },
 ]
 
 // 2025 工程實績資料
