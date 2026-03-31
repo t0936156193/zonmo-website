@@ -373,10 +373,10 @@ const PartnersBar = () => (
     <div class="container">
       <div class="partners-inner">
         <span class="partners-label">協力合作夥伴</span>
-        <div class="partner-badge">
+        <a href="https://www.yosonsf.com/" target="_blank" rel="noopener noreferrer" class="partner-badge partner-badge-link">
           <img src="/static/logo-yoson.jpg" alt="佑昇鷹架" class="partner-badge-logo" />
           <span>佑昇鷹架</span>
-        </div>
+        </a>
         <div class="partner-badge-sep"></div>
         <div class="partner-badge">
           <img src="/static/logo-hefeng.jpg" alt="禾鋒鋼筋" class="partner-badge-logo" />
@@ -548,6 +548,9 @@ const Services = () => (
                 <div class="partner-item-text">
                   <h5>佑昇鷹架 <small>YO SON SCAFFOLDING</small></h5>
                   <p>專業鷹架搭設服務，搭配鋁模板施工，提供完整安全施工平台，確保工地全程安全高效運作。</p>
+                  <a href="https://www.yosonsf.com/" target="_blank" rel="noopener noreferrer" class="partner-website-link">
+                    <i class="fas fa-globe"></i> 造訪官方網站
+                  </a>
                 </div>
               </div>
               <div class="partner-divider"></div>
@@ -576,6 +579,12 @@ const photoData = [
   { src: '/static/photos/work-06.jpg', caption: '天花板底模安裝作業', tag: '天花板模板' },
   { src: '/static/photos/work-07.jpg', caption: '室內雷射水平校準', tag: '精密測量' },
   { src: '/static/photos/work-08.jpg', caption: '模板拆卸精細操作', tag: '拆模作業' },
+  { src: '/static/photos/work-09.jpg', caption: '鋁合金模板牆體組立施工', tag: '模板安裝' },
+  { src: '/static/photos/work-10.jpg', caption: '鋁模板系統備料整備', tag: '材料管理' },
+  { src: '/static/photos/work-11.jpg', caption: '清水混凝土脫模後牆面', tag: '完工成果' },
+  { src: '/static/photos/work-12.jpg', caption: '天花板鋁模板底層施工', tag: '樓板模板' },
+  { src: '/static/photos/work-13.jpg', caption: '鋁模板節點接合細部', tag: '精密施工' },
+  { src: '/static/photos/work-14.jpg', caption: '多樓層鋁模板施工進度', tag: '大型工程' },
 ]
 
 // 2025 工程實績資料
