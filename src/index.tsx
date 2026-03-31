@@ -972,7 +972,7 @@ const Footer = () => (
             <li><a href="#services"><i class="fas fa-chevron-right"></i> 模板設計規劃</a></li>
             <li><a href="#services"><i class="fas fa-chevron-right"></i> 現場安裝施工</a></li>
             <li><a href="#services"><i class="fas fa-chevron-right"></i> 拆卸維護</a></li>
-            <li><a href="#services"><i class="fas fa-chevron-right"></i> 佑昇鷹架（協力）</a></li>
+            <li><a href="https://www.yosonsf.com/" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> 佑昇鷹架（協力）</a></li>
             <li><a href="#services"><i class="fas fa-chevron-right"></i> 禾鋒鋼筋（協力）</a></li>
           </ul>
         </div>
