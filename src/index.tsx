@@ -373,10 +373,10 @@ const PartnersBar = () => (
     <div class="container">
       <div class="partners-inner">
         <span class="partners-label">協力合作夥伴</span>
-        <a href="https://www.yosonsf.com/" target="_blank" rel="noopener noreferrer" class="partner-badge partner-badge-link">
+        <div class="partner-badge">
           <img src="/static/logo-yoson.jpg" alt="佑昇鷹架" class="partner-badge-logo" />
-          <span>佑昇鷹架</span>
-        </a>
+          <a href="https://www.yosonsf.com/" target="_blank" rel="noopener noreferrer" class="partner-badge-link">佑昇鷹架</a>
+        </div>
         <div class="partner-badge-sep"></div>
         <div class="partner-badge">
           <img src="/static/logo-hefeng.jpg" alt="禾鋒鋼筋" class="partner-badge-logo" />

@@ -826,12 +826,8 @@ section { padding: 100px 0; }
 }
 .partner-website-link i { font-size: .75rem; }
 .partner-badge-link {
-  display: flex;
-  align-items: center;
-  gap: 10px;
   color: inherit;
   text-decoration: none;
-  width: 100%;
 }
 
 .partner-divider {
