@@ -21,31 +21,31 @@ app.get('/sitemap.xml', (c) => {
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://zonmo.com.tw/</loc>
-    <lastmod>2025-03-27</lastmod>
+    <lastmod>2026-05-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://zonmo.com.tw/#about</loc>
-    <lastmod>2025-03-27</lastmod>
+    <lastmod>2026-05-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://zonmo.com.tw/#services</loc>
-    <lastmod>2025-03-27</lastmod>
+    <lastmod>2026-05-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://zonmo.com.tw/#projects</loc>
-    <lastmod>2025-03-27</lastmod>
+    <lastmod>2026-05-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://zonmo.com.tw/#contact</loc>
-    <lastmod>2025-03-27</lastmod>
+    <lastmod>2026-05-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -58,9 +58,9 @@ const renderer = jsxRenderer(({ children, title }: { children?: any; title?: str
     <head>
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>{title || '中華鋁模有限公司 | 鋁合金模板工程專家'}</title>
-      <meta name="description" content="中華鋁模有限公司，專業鋁合金模板設計、製造與安裝，承接住宅、商業及公共建設模板工程。新北市土城、台北市松山等地區實績豐富，提供高效、耐用、環保的建築模板解決方案，歡迎洽詢。" />
-      <meta name="keywords" content="鋁模板,鋁合金模板,模板工程,中華鋁模,建築模板,系統模板,台北模板工程,新北模板工程,鋁模出租,模板安裝" />
+      <title>{title || '中華鋁模有限公司 | 鋁合金模板・逆打工法工程專家'}</title>
+      <meta name="description" content="中華鋁模有限公司專注鋁合金模板、傳統模板與地下結構／逆打工法施工，具住宅、產業園區、公共建設與土木工程實績，累計承攬總額逾 5.7 億，提供精準、高效、安全的模板工程解決方案。" />
+      <meta name="keywords" content="中華鋁模,鋁合金模板,傳統模板,逆打工法,地下結構工程,模板工程,系統模板,建築模板,鋁模施工,模板安裝" />
       <meta name="author" content="中華鋁模有限公司" />
       <meta name="robots" content="index, follow" />
       <meta name="google-site-verification" content="Ll-yl3BPYIUyH3Seo7deWAz9BwkrG6YD_fUNLJT8OQU" />
@@ -69,15 +69,15 @@ const renderer = jsxRenderer(({ children, title }: { children?: any; title?: str
       {/* Open Graph (Facebook / LINE 分享預覽) */}
       <meta property="og:type" content="website" />
       <meta property="og:url" content="https://zonmo.com.tw/" />
-      <meta property="og:title" content="中華鋁模有限公司 | 鋁合金模板工程專家" />
-      <meta property="og:description" content="專業鋁合金模板設計、製造與安裝，承接住宅、商業及公共建設模板工程。二十餘年豐富實績，歡迎洽詢合作。" />
+      <meta property="og:title" content="中華鋁模有限公司 | 鋁合金模板・逆打工法工程專家" />
+      <meta property="og:description" content="專注鋁合金模板、傳統模板與地下結構／逆打工法，累計承攬總額逾 5.7 億，為住宅、商業與公共建設提供精準施工服務。" />
       <meta property="og:site_name" content="中華鋁模有限公司" />
       <meta property="og:locale" content="zh_TW" />
 
       {/* Twitter Card */}
       <meta name="twitter:card" content="summary" />
-      <meta name="twitter:title" content="中華鋁模有限公司 | 鋁合金模板工程專家" />
-      <meta name="twitter:description" content="專業鋁合金模板設計、製造與安裝，二十餘年豐富工程實績。" />
+      <meta name="twitter:title" content="中華鋁模有限公司 | 鋁合金模板・逆打工法工程專家" />
+      <meta name="twitter:description" content="專注鋁合金模板、傳統模板與逆打工法施工，具深地下工程與大型建案實績。" />
 
       {/* 結構化資料 JSON-LD */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
@@ -86,8 +86,8 @@ const renderer = jsxRenderer(({ children, title }: { children?: any; title?: str
         "name": "中華鋁模有限公司",
         "alternateName": "CHUN HAN Engineering Co., Ltd.",
         "url": "https://zonmo.com.tw",
-        "telephone": "+886-2-2691-3585",
-        "description": "專業鋁合金模板設計、製造與安裝，承接住宅、商業及公共建設模板工程。",
+        "telephone": "+886-912-408-777",
+        "description": "專注鋁合金模板、傳統模板與地下結構／逆打工法施工，承接住宅、產業園區、公共建設與土木工程模板工程。",
         "address": {
           "@type": "PostalAddress",
           "addressCountry": "TW",
@@ -95,7 +95,7 @@ const renderer = jsxRenderer(({ children, title }: { children?: any; title?: str
         },
         "foundingDate": "2000",
         "areaServed": ["台北市", "新北市", "桃園市"],
-        "serviceType": ["鋁合金模板工程", "模板設計", "模板製造", "模板安裝"]
+        "serviceType": ["鋁合金模板工程", "傳統模板工程", "地下結構工程", "逆打工法施工"]
       })}} />
 
       <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -207,12 +207,15 @@ if (form) {
 
 /* ---- Counter animation ---- */
 function animateCount(el) {
-  const target = parseInt(el.dataset.target, 10);
+  const target = parseFloat(el.dataset.target || '0');
+  const decimals = parseInt(el.dataset.decimals || '0', 10);
+  const prefix = el.dataset.prefix || '';
+  const suffix = el.dataset.suffix || '';
   let current = 0;
-  const step = Math.ceil(target / 60);
+  const step = Math.max(target / 60, Math.pow(10, -decimals));
   const timer = setInterval(() => {
     current = Math.min(current + step, target);
-    el.textContent = current + (el.dataset.suffix || '');
+    el.textContent = prefix + current.toFixed(decimals) + suffix;
     if (current >= target) clearInterval(timer);
   }, 25);
 }
@@ -320,19 +323,19 @@ const Hero = () => (
       </div>
       <div class="hero-badge">
         <i class="fas fa-grip-lines"></i>
-        <span>ALUMINUM FORMWORK ENGINEERING</span>
+        <span>TRUSTED PARTNER · BUILD WITH EXCELLENCE</span>
       </div>
       <h1 class="hero-title">
-        <span class="accent-text">中華鋁模</span>
-        <br />有限公司
+        <span class="accent-text">築基深地</span>
+        <br />鑄造卓越
       </h1>
       <p class="hero-subtitle">
-        永續建築・高效施工・品質第一
-        <br />結合先進鋁合金模板技術，為每個建築項目提供卓越品質保障。
+        中華鋁模有限公司｜專業模板工程的精準施工品質
+        <br />專注鋁合金模板、傳統模板與地下結構／逆打工法，成為您值得信賴的建築夥伴。
       </p>
       <div class="hero-buttons">
         <a href="#services" class="btn-primary">
-          <i class="fas fa-layer-group"></i>探索服務項目
+          <i class="fas fa-layer-group"></i>探索三大服務
         </a>
         <a href="#contact" class="btn-outline">
           <i class="fas fa-phone"></i>立即洽詢
@@ -340,23 +343,23 @@ const Hero = () => (
       </div>
       <div class="hero-stats">
         <div class="stat-item">
-          <div class="stat-number" data-target="24" data-suffix="+">0+</div>
-          <div class="stat-label">年產業經驗</div>
+          <div class="stat-number" data-target="5.7" data-decimals="1" data-prefix=">" data-suffix=" 億">0</div>
+          <div class="stat-label">累計承攬總額</div>
         </div>
         <div class="stat-divider"></div>
         <div class="stat-item">
-          <div class="stat-number" data-target="100" data-suffix="%">0%</div>
-          <div class="stat-label">品質保證</div>
+          <div class="stat-number" data-target="2.4" data-decimals="1" data-prefix=">" data-suffix=" 億">0</div>
+          <div class="stat-label">單案最高承攬</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <div class="stat-number" data-target="5" data-prefix="B">0</div>
+          <div class="stat-label">最深地下層實績</div>
         </div>
         <div class="stat-divider"></div>
         <div class="stat-item">
           <div class="stat-number" data-target="6" data-suffix="+">0+</div>
-          <div class="stat-label">工程實績</div>
-        </div>
-        <div class="stat-divider"></div>
-        <div class="stat-item">
-          <div class="stat-number" data-target="2" data-suffix="">0</div>
-          <div class="stat-label">戰略夥伴</div>
+          <div class="stat-label">代表工程案例</div>
         </div>
       </div>
     </div>
@@ -409,28 +412,28 @@ const About = () => (
         </div>
         <div class="about-text fade-in">
           <span class="section-label">ABOUT US</span>
-          <h2 class="section-title">從木模到鋁模<br />二十餘年的專業積累</h2>
+          <h2 class="section-title">模板工程深耕多年<br />聚焦鋁模與深地下工程</h2>
           <div class="section-divider"></div>
           <div class="timeline">
             <div class="timeline-item">
               <div class="timeline-dot"></div>
               <div class="timeline-body">
                 <div class="timeline-year">2000 年</div>
-                <p>前身「春和企業有限公司」成立，最初專注於木製模板的施工及安裝服務。以優質木模板技術和可靠服務，贏得眾多客戶的信賴與支持。</p>
+                <p>前身以模板工程施工與現場管理起家，逐步累積住宅、公共建設與土木工程所需的實務經驗，建立穩定的施工基礎與協作能力。</p>
               </div>
             </div>
             <div class="timeline-item">
               <div class="timeline-dot"></div>
               <div class="timeline-body">
                 <div class="timeline-year">2024 年</div>
-                <p>負責人王孟源引進先進鋁合金模板體系，大幅提升施工效率與質量，開啟公司新一輪成長契機。高強度、輕便性及耐用性鋁模板為建築行業帶來競爭力解決方案。</p>
+                <p>聚焦鋁合金模板、傳統模板與地下結構工程，導入更高效率的系統化施作流程，對應住宅量產案、公共工程與深地下案型需求。</p>
               </div>
             </div>
             <div class="timeline-item">
               <div class="timeline-dot"></div>
               <div class="timeline-body">
-                <div class="timeline-year">更名至今</div>
-                <p>正式更名為「中華鋁模有限公司」，專注於鋁製模板設計、製造及安裝，致力成為建築模板行業的領導者，持續創新，為每一個建築項目提供卓越品質和服務。</p>
+                <div class="timeline-year">發展至今</div>
+                <p>持續承攬大型住宅、產業園區、公共建設與土木工程，累計承攬總額逾 5.7 億，並以安全、精準、如期交付作為每一案的核心承諾。</p>
               </div>
             </div>
           </div>
@@ -446,36 +449,36 @@ const Values = () => (
     <div class="container">
       <div class="values-header fade-in">
         <span class="section-label">CORE VALUES</span>
-        <h2 class="section-title">三大核心價值<br />驅動卓越建築</h2>
+        <h2 class="section-title">三大核心優勢<br />驅動工程交付</h2>
         <div class="section-divider"></div>
         <p class="section-desc">
-          中華鋁模秉持「專業至上，永續建築，高效低耗」的經營理念，
-          致力為客戶提供卓越的鋁製模板解決方案，為建築行業的綠色發展貢獻力量。
+          中華鋁模以精準施工、深地下經驗與效率控管為核心，
+          對應不同案型的模板需求，協助業主在安全、品質與進度之間取得最佳平衡。
         </p>
       </div>
       <div class="values-grid">
         <div class="value-card fade-in">
           <div class="value-icon"><i class="fas fa-award"></i></div>
-          <h3>專業至上</h3>
+          <h3>精準施工</h3>
           <p>
-            專業是成功的基石。我們不斷提升技術和服務水準，確保每個項目都以最高品質完成。
-            專業團隊憑藉多年行業經驗，從設計到施工精益求精，為客戶提供最具價值的建築解決方案。
+            從模板配置、現場放樣到安裝拆模，建立清楚的施工節點與品質標準，
+            讓工程在複雜條件下仍能維持穩定度與整體完成度。
           </p>
         </div>
         <div class="value-card fade-in">
           <div class="value-icon"><i class="fas fa-leaf"></i></div>
-          <h3>永續建築</h3>
+          <h3>深地下經驗</h3>
           <p>
-            將環保與創新融入產品設計。鋁製模板具有可重複使用、耐用且可回收的特性，
-            能顯著減少建築過程中的資源浪費和環境負擔，為建築行業的綠色發展貢獻力量。
+            具地下結構與逆打工法施作經驗，可因應深開挖、鄰房敏感區域與多工種交界條件，
+            協助工程在安全管理與施工順序上更有系統。
           </p>
         </div>
         <div class="value-card fade-in">
           <div class="value-icon"><i class="fas fa-bolt"></i></div>
-          <h3>高效低耗</h3>
+          <h3>效率與成本控管</h3>
           <p>
-            提供高效施工解決方案，縮短建築周期，降低運營成本，助力客戶以更具競爭力的價格完成項目。
-            通過不斷技術創新和流程優化，實現高效率與低成本的完美結合，帶來更多商業價值。
+            透過系統化模板規劃與現場整合，降低重工與錯誤率，提升週轉效率，
+            讓業主在品質、進度與整體成本之間擁有更可預期的交付成果。
           </p>
         </div>
       </div>
@@ -490,32 +493,32 @@ const Services = () => (
       <div class="services-layout">
         <div class="services-info fade-in">
           <span class="section-label">OUR SERVICES</span>
-          <h2 class="section-title">鋁合金系統模板<br />全方位解決方案</h2>
+          <h2 class="section-title">三大工程服務<br />對應不同案型需求</h2>
           <div class="section-divider"></div>
           <p class="section-desc">
-            結合先進技術與可持續發展理念，提供高效環保的建築模板系統，
-            廣泛應用於現代建築工程，推動 ESG 綠色建築標準。
+            依據銷售簡報內容，中華鋁模的核心服務聚焦於鋁合金模板、傳統模板與地下結構／逆打工法，
+            從規劃到現場施作提供可落地的整合方案。
           </p>
           <div class="advantage-list">
             <div class="advantage-item">
               <div class="advantage-icon"><i class="fas fa-recycle"></i></div>
               <div class="advantage-text">
-                <h4>環保可回收</h4>
-                <p>鋁合金材料優異的回收性能，減少施工資源浪費，降低碳排放，符合綠色建築標準。</p>
+                <h4>鋁模高精度</h4>
+                <p>鋁合金模板具高精度與重複使用特性，適合標準化程度高的住宅與商業建築案型。</p>
               </div>
             </div>
             <div class="advantage-item">
               <div class="advantage-icon"><i class="fas fa-tachometer-alt"></i></div>
               <div class="advantage-text">
-                <h4>施工週期短</h4>
-                <p>模板輕便易於安裝和拆卸，設計簡單化使現場作業更高效，顯著縮短整體工期。</p>
+                <h4>傳統模板彈性高</h4>
+                <p>可依結構條件與特殊工法調整，適用公共建設、地下構造與非標準化施工需求。</p>
               </div>
             </div>
             <div class="advantage-item">
               <div class="advantage-icon"><i class="fas fa-star"></i></div>
               <div class="advantage-text">
-                <h4>表面品質優異</h4>
-                <p>拆模後混凝土表面平整光滑，減少後續修補需求，降低綜合成本，確保安全可靠性。</p>
+                <h4>深地下施作整合</h4>
+                <p>具地下 B5 案型與逆打工法經驗，可搭配多工種介面管理，提升深開挖工程協調效率。</p>
               </div>
             </div>
           </div>
@@ -523,18 +526,18 @@ const Services = () => (
         <div class="services-cards fade-in">
           <div class="service-card">
             <div class="service-card-icon"><i class="fas fa-drafting-compass"></i></div>
-            <h4>模板設計</h4>
-            <p>依工程需求量身規劃鋁合金模板系統，優化結構配置，提供最佳施工方案。</p>
+            <h4>鋁合金模板工程</h4>
+            <p>以高精度、可重複使用與快速週轉為特色，對應住宅與大型量體建築的模板施作需求。</p>
           </div>
           <div class="service-card">
             <div class="service-card-icon"><i class="fas fa-hard-hat"></i></div>
-            <h4>現場安裝</h4>
-            <p>專業施工團隊到場安裝，流程標準化操作，保障施工安全性與工程進度。</p>
+            <h4>傳統模板工程</h4>
+            <p>依現場條件進行客製化配置，滿足公共建設、特殊造型與複雜結構的施工需求。</p>
           </div>
           <div class="service-card service-card-span">
             <div class="service-card-icon"><i class="fas fa-tools"></i></div>
-            <h4>拆卸維護</h4>
-            <p>完工後系統性拆卸清潔，模板回收保養，為下次工程備用，實現可持續利用。</p>
+            <h4>地下結構／逆打工法</h4>
+            <p>針對深地下層、鄰房敏感與工序密集案型，提供更重視安全管理與施工順序的專業施作服務。</p>
           </div>
           {/* 協力合作廠商 */}
           <div class="service-card service-card-span partner-card">
@@ -547,7 +550,7 @@ const Services = () => (
                 <img src="/static/logo-yoson.jpg" alt="佑昇鷹架" class="partner-logo-img" />
                 <div class="partner-item-text">
                   <h5>佑昇鷹架 <small>YO SON SCAFFOLDING</small></h5>
-                  <p>專業鷹架搭設服務，搭配鋁模板施工，提供完整安全施工平台，確保工地全程安全高效運作。</p>
+                  <p>專業鷹架搭設服務，搭配模板與地下結構施作，協助建立完整且安全的施工平台。</p>
                   <a href="https://www.yosonsf.com/" target="_blank" rel="noopener noreferrer" class="partner-website-link">
                     <i class="fas fa-globe"></i> 造訪官方網站
                   </a>
@@ -558,7 +561,7 @@ const Services = () => (
                 <img src="/static/logo-hefeng.jpg" alt="禾鋒鋼筋" class="partner-logo-img" />
                 <div class="partner-item-text">
                   <h5>禾鋒鋼筋</h5>
-                  <p>鋼筋加工與配料專業廠商，與中華鋁模緊密協作，提供高品質鋼筋材料，確保結構安全穩固。</p>
+                  <p>與模板工程緊密協作的鋼筋加工夥伴，共同強化現場整合效率與結構品質。</p>
                 </div>
               </div>
             </div>
@@ -585,7 +588,7 @@ const photoData = [
   { src: '/static/photos/work-13.jpg', caption: '鋁模板節點接合細部', tag: '精密施工' },
 ]
 
-// 2025 工程實績資料
+// 代表工程實績資料
 const projectRecords = [
   {
     no: '01',
@@ -593,7 +596,7 @@ const projectRecords = [
     name: '中工雲宇宙產業園區新建工程',
     subName: '模板工程（二）',
     location: '新北市土城',
-    floors: '地上 16 層 / 地下 5 層',
+    floors: '16F / B5',
     amount: '2,700 萬',
     tag: '產業園區',
     icon: 'fas fa-industry',
@@ -602,10 +605,10 @@ const projectRecords = [
   {
     no: '02',
     owner: '中華工程',
-    name: '鳴森院住宅新建工程',
-    subName: '鋁合金模板工程',
+    name: '鳴森苑住宅新建工程',
+    subName: '鋁製模板工程',
     location: '台北市松山區',
-    floors: '地上 21 層 / 地下 4 層',
+    floors: 'B4',
     amount: '2 億 4,000 萬',
     tag: '住宅建案',
     icon: 'fas fa-building',
@@ -614,10 +617,10 @@ const projectRecords = [
   {
     no: '03',
     owner: '中華工程',
-    name: '鳴森院住宅新建工程',
+    name: '鳴森苑住宅新建工程',
     subName: '模板工程',
     location: '台北市松山區',
-    floors: '地下 4 層',
+    floors: '21F',
     amount: '1 億 4,000 萬',
     tag: '住宅建案',
     icon: 'fas fa-building',
@@ -630,7 +633,7 @@ const projectRecords = [
     subName: '模板工程',
     location: '台北市大直',
     floors: '地上 7 層 / 地下 3 層',
-    amount: '7,000 萬',
+    amount: '5,500 萬',
     tag: '公共建設',
     icon: 'fas fa-landmark',
     type: '公共建築',
@@ -669,10 +672,10 @@ const Projects = () => (
         <span class="section-label">PROJECTS</span>
         <h2 class="section-title">工程實績，品質驗證</h2>
         <div class="section-divider"></div>
-        <p class="section-desc" style="margin:0 auto">中華鋁模承接多項大型建築工程，涵蓋住宅、商業、公共建設及土木工程，以精湛技術與嚴格品質管控，為每項工程提供最佳解決方案。</p>
+        <p class="section-desc" style="margin:0 auto">累計承攬總額逾 5.7 億，代表工程涵蓋住宅、產業園區、公共建設與土木工程，展現中華鋁模在不同案型中的整合能力與交付經驗。</p>
       </div>
 
-      {/* 2025 工程實績列表 */}
+      {/* 代表工程實績列表 */}
       <div class="records-wrap fade-in">
         <div class="records-header">
           <i class="fas fa-clipboard-list"></i>
@@ -725,7 +728,7 @@ const Projects = () => (
           <i class="fas fa-camera"></i>
           <span>施工實況照片</span>
         </div>
-        <p class="photo-section-note">鳴森院建案 — 鋁合金系統模板全流程紀錄</p>
+        <p class="photo-section-note">鳴森苑建案｜鋁合金模板施作實況紀錄</p>
       </div>
 
       {/* Main Slider */}
@@ -784,26 +787,26 @@ const Contact = () => (
     <div class="container">
       <div class="contact-header fade-in">
         <span class="section-label">CONTACT US</span>
-        <h2 class="section-title">立即洽詢，開啟合作</h2>
+        <h2 class="section-title">立即洽詢，啟動工程合作</h2>
         <div class="section-divider"></div>
-        <p class="section-desc">無論您有任何工程諮詢、報價需求或合作洽談，我們的專業團隊將盡快回覆您。</p>
+        <p class="section-desc">歡迎洽詢鋁合金模板、傳統模板、地下結構或逆打工法需求，我們將依案型提供對應建議與合作評估。</p>
       </div>
       <div class="contact-grid">
         <div class="contact-cards fade-in">
           <div class="contact-card">
             <div class="contact-card-icon"><i class="fas fa-user-tie"></i></div>
             <div class="contact-card-content">
-              <label>負責人</label>
+              <label>工程洽詢窗口</label>
               <span>王孟源</span>
-              <small>CHUN HAN Engineering Company Limited</small>
+              <small>中華鋁模有限公司</small>
             </div>
           </div>
           <div class="contact-card">
             <div class="contact-card-icon"><i class="fas fa-phone"></i></div>
             <div class="contact-card-content">
-              <label>連絡電話</label>
+              <label>聯絡電話</label>
               <span><a href="tel:0912408777">0912-408-777</a></span>
-              <small>歡迎來電洽詢工程事宜</small>
+              <small>歡迎來電洽詢工程與合作事宜</small>
             </div>
           </div>
           <div class="contact-card">
@@ -844,8 +847,9 @@ const Contact = () => (
               <label>詢問類別</label>
               <select name="詢問類別">
                 <option value="">請選擇詢問類別</option>
-                <option>鋁合金系統模板工程諮詢</option>
+                <option>鋁合金模板工程諮詢</option>
                 <option>傳統模板工程諮詢</option>
+                <option>地下結構／逆打工法諮詢</option>
                 <option>工程報價</option>
                 <option>人才應徵</option>
                 <option>其他</option>
@@ -872,69 +876,69 @@ const Recruitment = () => (
       <div class="recruitment-grid">
         <div class="recruitment-intro fade-in">
           <span class="section-label">JOIN OUR TEAM</span>
-          <h2 class="section-title">加入我們<br />共創建築未來</h2>
+          <h2 class="section-title">加入我們<br />一起把每一層樓做好</h2>
           <div class="section-divider"></div>
           <p class="section-desc">
-            中華鋁模有限公司是一家致力於提供高品質鋁製模板系統的領先企業。
-            隨著公司持續成長，我們誠邀充滿熱情、追求卓越的專業人才加入團隊，共同推動建築行業的革新。
+            每一層樓，都是我們的承諾。
+            我們誠摯邀請具模板、工務、現場施工與工程管理經驗的人才加入，一起完成住宅、公共建設與深地下工程的關鍵任務。
           </p>
           <div class="talent-cards" style="margin-top:32px">
             <div class="talent-card">
               <div class="talent-card-icon"><i class="fas fa-medal"></i></div>
               <div>
-                <h4>專業精神</h4>
-                <p>具備相關行業經驗或專業知識，對工作充滿熱情，追求卓越品質。</p>
+                <h4>現場執行</h4>
+                <p>熟悉工地節奏、重視施工品質，能在現場落實圖面、工序與交付標準。</p>
               </div>
             </div>
             <div class="talent-card">
               <div class="talent-card-icon"><i class="fas fa-lightbulb"></i></div>
               <div>
-                <h4>創新能力</h4>
-                <p>敢於挑戰傳統，擁有創新思維，能為公司帶來新的理念和方法。</p>
+                <h4>安全意識</h4>
+                <p>理解深地下與多工種交界風險，願意把安全管理落實到每日作業細節。</p>
               </div>
             </div>
             <div class="talent-card">
               <div class="talent-card-icon"><i class="fas fa-users"></i></div>
               <div>
-                <h4>團隊合作</h4>
-                <p>善於溝通協作，樂於與團隊成員共同努力達成目標。</p>
+                <h4>團隊協作</h4>
+                <p>能與工地主任、協力廠商與現場班組有效協調，讓工程節奏更順暢。</p>
               </div>
             </div>
             <div class="talent-card">
               <div class="talent-card-icon"><i class="fas fa-shield-alt"></i></div>
               <div>
-                <h4>責任感</h4>
-                <p>擁有高度責任心，能在壓力下保持高效工作效率。</p>
+                <h4>責任交付</h4>
+                <p>對進度、品質與收尾成果負責，確保每一道工序都能安心交給下一班。</p>
               </div>
             </div>
           </div>
         </div>
         <div class="benefits-box fade-in">
-          <h3><i class="fas fa-gift"></i> 我們提供的機會</h3>
+          <h3><i class="fas fa-gift"></i> 我們提供的發展機會</h3>
           <div class="benefits-grid">
             <div class="benefit-item">
               <i class="fas fa-graduation-cap"></i>
-              <strong>專業成長</strong>
-              <p>定期培訓與工作坊，提升專業技能</p>
+              <strong>大型案型歷練</strong>
+              <p>參與住宅、產業園區、公共建設與深地下工程實務</p>
             </div>
             <div class="benefit-item">
               <i class="fas fa-chart-line"></i>
-              <strong>職業發展</strong>
-              <p>明確晉升路徑，鼓勵長期發展</p>
+              <strong>穩定成長</strong>
+              <p>隨公司案量與組織擴大，提供長期投入與發展空間</p>
             </div>
             <div class="benefit-item">
               <i class="fas fa-building"></i>
-              <strong>舒適環境</strong>
-              <p>支持創意的工作氛圍</p>
+              <strong>技術學習</strong>
+              <p>累積鋁模、傳統模板與地下結構相關施工知識</p>
             </div>
             <div class="benefit-item">
               <i class="fas fa-hand-holding-usd"></i>
-              <strong>員工福利</strong>
-              <p>具競爭力薪酬與完善健康保險</p>
+              <strong>依法福利</strong>
+              <p>提供具競爭力待遇與完善勞健保制度</p>
             </div>
           </div>
           <div class="apply-cta">
-            <p>如果您渴望在快速發展的公司中展現自我，歡迎將個人履歷傳送至我們的招募信箱。</p>
+            <p>若您認同品質、安全與責任交付的工作態度，歡迎將履歷寄送至招募信箱與我們聯繫。</p>
             <a href="mailto:zonmo1961@gmail.com?subject=應徵中華鋁模有限公司職位">
               <i class="fas fa-envelope"></i>立即投遞履歷
             </a>
@@ -958,14 +962,14 @@ const Footer = () => (
               <div class="en">CHUN HAN Engineering Co., Ltd.</div>
             </div>
           </div>
-          <p>專業鋁製模板設計、製造及安裝，提供高效、經濟的建築模板解決方案。致力成為建築模板行業的領導者，持續創新，為每一個建築項目提供卓越品質和服務。</p>
+          <p>專注鋁合金模板、傳統模板與地下結構／逆打工法施工，累積住宅、產業園區、公共建設與土木工程實績，提供值得信賴的模板工程解決方案。</p>
           <div class="footer-reg">統一編號：54738771</div>
         </div>
         <div class="footer-col">
           <h4>網站導覽</h4>
           <ul>
             <li><a href="#about"><i class="fas fa-chevron-right"></i> 關於我們</a></li>
-            <li><a href="#values"><i class="fas fa-chevron-right"></i> 經營理念</a></li>
+            <li><a href="#values"><i class="fas fa-chevron-right"></i> 核心優勢</a></li>
             <li><a href="#services"><i class="fas fa-chevron-right"></i> 服務項目</a></li>
             <li><a href="#projects"><i class="fas fa-chevron-right"></i> 工程實績</a></li>
             <li><a href="#contact"><i class="fas fa-chevron-right"></i> 聯絡我們</a></li>
@@ -975,10 +979,10 @@ const Footer = () => (
         <div class="footer-col">
           <h4>服務項目</h4>
           <ul>
-            <li><a href="#services"><i class="fas fa-chevron-right"></i> 鋁合金系統模板</a></li>
-            <li><a href="#services"><i class="fas fa-chevron-right"></i> 模板設計規劃</a></li>
-            <li><a href="#services"><i class="fas fa-chevron-right"></i> 現場安裝施工</a></li>
-            <li><a href="#services"><i class="fas fa-chevron-right"></i> 拆卸維護</a></li>
+            <li><a href="#services"><i class="fas fa-chevron-right"></i> 鋁合金模板工程</a></li>
+            <li><a href="#services"><i class="fas fa-chevron-right"></i> 傳統模板工程</a></li>
+            <li><a href="#services"><i class="fas fa-chevron-right"></i> 地下結構工程</a></li>
+            <li><a href="#services"><i class="fas fa-chevron-right"></i> 逆打工法施工</a></li>
             <li><a href="https://www.yosonsf.com/" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> 佑昇鷹架（協力）</a></li>
             <li><a href="#services"><i class="fas fa-chevron-right"></i> 禾鋒鋼筋（協力）</a></li>
           </ul>
@@ -1053,7 +1057,7 @@ const Navbar = () => (
         </a>
         <div class="nav-links">
           <a href="#about">關於我們</a>
-          <a href="#values">經營理念</a>
+          <a href="#values">核心優勢</a>
           <a href="#services">服務項目</a>
           <a href="#projects">工程實績</a>
           <a href="#recruitment">人才招募</a>
@@ -1083,7 +1087,7 @@ app.get('/', (c) => {
       <Footer />
       <button id="scroll-top" title="回到頂端"><i class="fas fa-chevron-up"></i></button>
     </>,
-    { title: '中華鋁模有限公司 | 永續建築，高效施工' }
+    { title: '中華鋁模有限公司 | 鋁合金模板・逆打工法工程專家' }
   )
 })
 
