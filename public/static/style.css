@@ -366,7 +366,7 @@ ul { list-style: none; }
   letter-spacing: 2px;
   text-transform: uppercase;
 }
-/* 舊樣式相容 */
+/* stat-divider 在桌機版隱藏（用 stat-item border-right 分隔） */
 .stat-divider { display: none; }
 
 
@@ -1803,28 +1803,37 @@ footer {
   .contact-grid { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
   .benefits-grid { grid-template-columns: 1fr; }
-  /* 數據區塊：2x2 網格，縮小字體 */
+  /* 數據區塊：2x2 排列，縮小字體
+     用 flex wrap，stat-divider 已移除，直接 4 個 stat-item 各佔 50% */
   .hero-stats {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1px;
-    background: rgba(255,255,255,.06);
-    border: 1px solid rgba(255,255,255,.06);
-    border-radius: 12px;
-    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
     width: 100%;
     max-width: 340px;
     margin: 0 auto;
+    border: 1px solid rgba(255,255,255,.06);
+    border-radius: 12px;
+    overflow: hidden;
+    background: rgba(255,255,255,.06);
+    gap: 0;
   }
+  .stat-divider { display: none; }
   .stat-item {
+    width: 50%;
     padding: 16px 12px;
-    border-right: none;
     background: rgba(0,0,0,.15);
+    box-sizing: border-box;
+    border-right: none;
   }
-  .stat-item:nth-child(odd) { border-right: 1px solid rgba(255,255,255,.06); }
+  /* 左欄（第1、第3個）：右邊框分隔 */
+  .stat-item:nth-child(odd) {
+    border-right: 1px solid rgba(255,255,255,.06);
+  }
+  /* 第1行（第1、第2個）：下邊框分隔 */
   .stat-item:nth-child(1),
-  .stat-item:nth-child(2) { border-bottom: 1px solid rgba(255,255,255,.06); }
-  .stat-item:last-child { border-right: none; }
+  .stat-item:nth-child(2) {
+    border-bottom: 1px solid rgba(255,255,255,.06);
+  }
   .stat-number {
     font-size: 1.6rem;
   }
@@ -1832,7 +1841,6 @@ footer {
     font-size: 10px;
     letter-spacing: 1px;
   }
-  .stat-divider { display: none; }
 
   /* 合作廠商：強制同一行 */
   .partners-inner {

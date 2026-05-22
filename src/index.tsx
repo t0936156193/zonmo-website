@@ -346,17 +346,14 @@ const Hero = () => (
           <div class="stat-number" data-target="5.7" data-decimals="1" data-prefix=">" data-suffix=" 億">0</div>
           <div class="stat-label">累計承攬總額</div>
         </div>
-        <div class="stat-divider"></div>
         <div class="stat-item">
           <div class="stat-number" data-target="2.4" data-decimals="1" data-prefix=">" data-suffix=" 億">0</div>
           <div class="stat-label">單案最高承攬</div>
         </div>
-        <div class="stat-divider"></div>
         <div class="stat-item">
           <div class="stat-number" data-target="5" data-prefix="B">0</div>
           <div class="stat-label">最深地下層實績</div>
         </div>
-        <div class="stat-divider"></div>
         <div class="stat-item">
           <div class="stat-number" data-target="6" data-suffix="+">0+</div>
           <div class="stat-label">代表工程案例</div>
