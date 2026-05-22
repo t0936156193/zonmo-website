@@ -339,13 +339,17 @@ ul { list-style: none; }
 .hero-stats {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 0;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  width: 100%;
 }
 .stat-item {
   text-align: center;
-  padding: 0 48px;
+  padding: 0 36px;
   border-right: 1px solid rgba(255,255,255,.08);
+  flex: 1;
+  min-width: 0;
 }
 .stat-item:last-child { border-right: none; }
 .stat-number {
