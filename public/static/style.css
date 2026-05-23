@@ -353,12 +353,13 @@ ul { list-style: none; }
 }
 .stat-item:last-child { border-right: none; }
 .stat-number {
-  font-size: 2.6rem;
+  font-size: 2.0rem;
   font-weight: 900;
   color: var(--accent);
   line-height: 1;
   margin-bottom: 6px;
   font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }
 .stat-label {
   font-size: 11px;
@@ -1835,7 +1836,8 @@ footer {
     border-bottom: 1px solid rgba(255,255,255,.06);
   }
   .stat-number {
-    font-size: 1.6rem;
+    font-size: 1.25rem;
+    white-space: nowrap;
   }
   .stat-label {
     font-size: 10px;
