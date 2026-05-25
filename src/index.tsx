@@ -86,7 +86,7 @@ const renderer = jsxRenderer(({ children, title }: { children?: any; title?: str
         "name": "中華鋁模有限公司",
         "alternateName": "CHUN HAN Engineering Co., Ltd.",
         "url": "https://zonmo.com.tw",
-        "telephone": "+886-912-408-777",
+        "telephone": "+886-920-880-654",
         "description": "專注鋁合金模板、傳統模板與地下結構／逆打工法施工，承接住宅、產業園區、公共建設與土木工程模板工程。",
         "address": {
           "@type": "PostalAddress",
@@ -802,7 +802,7 @@ const Contact = () => (
             <div class="contact-card-icon"><i class="fas fa-phone"></i></div>
             <div class="contact-card-content">
               <label>聯絡電話</label>
-              <span><a href="tel:0912408777">0912-408-777</a></span>
+              <span><a href="tel:0920880654">0920-880-654（王先生）</a></span>
               <small>歡迎來電洽詢工程與合作事宜</small>
             </div>
           </div>
@@ -992,7 +992,7 @@ const Footer = () => (
           </div>
           <div class="footer-contact-item">
             <i class="fas fa-phone"></i>
-            <a href="tel:0912408777">0912-408-777</a>
+            <a href="tel:0920880654">0920-880-654（王先生）</a>
           </div>
           <div class="footer-contact-item">
             <i class="fas fa-envelope"></i>
@@ -1033,7 +1033,7 @@ const Footer = () => (
           <h3>五、政策修訂</h3>
           <p>本公司保留隨時修訂本隱私政策之權利，修訂後將公告於本網站。如您繼續使用本網站服務，視為同意修訂後之條款。</p>
           <h3>六、聯絡方式</h3>
-          <p>若您對本隱私政策有任何疑問，請聯絡：<br />電話：0912-408-777<br />信箱：zonmo1961@gmail.com<br />地址：新北市汐止區東勢街201巷326號</p>
+          <p>若您對本隱私政策有任何疑問，請聯絡：<br />電話：0920-880-654（王先生）<br />信箱：zonmo1961@gmail.com<br />地址：新北市汐止區東勢街201巷326號</p>
         </div>
       </div>
     </div>
