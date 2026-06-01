@@ -1067,6 +1067,77 @@ section { padding: 100px 0; }
   color: var(--gray);
 }
 
+/* ── Drone Video Section ─────────────────────────────────────────── */
+.drone-video-section {
+  margin-top: 52px;
+  padding-top: 40px;
+  border-top: 1px solid var(--light);
+}
+.drone-video-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--light);
+}
+.drone-video-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: .95rem;
+  font-weight: 700;
+  color: var(--dark);
+}
+.drone-video-label i { color: var(--accent); }
+.drone-video-note {
+  font-size: .85rem;
+  color: var(--gray);
+}
+.drone-video-wrap {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.18);
+  aspect-ratio: 16/9;
+}
+.drone-video-player {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.drone-video-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  font-size: .78rem;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  letter-spacing: .04em;
+  pointer-events: none;
+}
+.drone-video-badge i { color: var(--accent); font-size: .85rem; }
+.drone-video-caption {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  font-size: .85rem;
+  color: var(--gray);
+}
+.drone-video-caption i { color: var(--accent); }
+
 /* RWD — 中小尺寸隱藏次要欄位 */
 @media (max-width: 960px) {
   .rec-floors { display: none; }
@@ -1900,4 +1971,7 @@ footer {
     display: none;
   }
   .contact-form-box { padding: 24px; }
+  .drone-video-section { margin-top: 36px; padding-top: 28px; }
+  .drone-video-wrap { aspect-ratio: 4/3; }
+  .drone-video-header { flex-direction: column; align-items: flex-start; }
 }

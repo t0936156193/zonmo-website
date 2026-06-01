@@ -798,6 +798,35 @@ const Projects = () => (
           <div class="lightbox-caption" id="lbCaption"></div>
         </div>
       </div>
+
+      {/* 空拍影片展示區 */}
+      <div class="drone-video-section fade-in">
+        <div class="drone-video-header">
+          <div class="drone-video-label">
+            <i class="fas fa-video"></i>
+            <span>空拍實況影片</span>
+          </div>
+          <p class="drone-video-note">土城雲宇宙建案｜無人機空拍施工全紀錄</p>
+        </div>
+        <div class="drone-video-wrap">
+          <video
+            class="drone-video-player"
+            src="/static/hero_video.mp4"
+            controls
+            preload="metadata"
+            poster="/static/logo_transparent.png"
+            playsinline
+          ></video>
+          <div class="drone-video-badge">
+            <i class="fas fa-drone-alt"></i>
+            <span>空拍紀錄</span>
+          </div>
+        </div>
+        <div class="drone-video-caption">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>新北市土城區｜雲宇宙建案｜鋁合金模板施工空拍全程紀錄</span>
+        </div>
+      </div>
     </div>
   </section>
 )
