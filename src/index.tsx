@@ -84,7 +84,7 @@ const renderer = jsxRenderer(({ children, title }: { children?: any; title?: str
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
         "name": "中華鋁模有限公司",
-        "alternateName": "CHUN HAN Engineering Co., Ltd.",
+        "alternateName": "ZON MO Co., Ltd.",
         "url": "https://zonmo.com.tw",
         "telephone": "+886-920-880-654",
         "description": "專注鋁合金模板、傳統模板與地下結構／逆打工法施工，承接住宅、產業園區、公共建設與土木工程模板工程。",
@@ -397,7 +397,7 @@ const About = () => (
             <i class="fas fa-building about-icon-main"></i>
             <div class="about-img-text">
               <h3>中華鋁模有限公司</h3>
-              <p>CHUN HAN Engineering Company Limited</p>
+              <p>ZON MO Co., Ltd.</p>
               <br />
               <p style="font-size:.8rem;opacity:.6">統一編號：54738771</p>
             </div>
@@ -956,7 +956,7 @@ const Footer = () => (
             <img src="/static/logo_white.png" alt="中華鋁模有限公司 Logo" class="footer-logo-img" />
             <div class="nav-logo-text">
               <div class="cn">中華鋁模有限公司</div>
-              <div class="en">CHUN HAN Engineering Co., Ltd.</div>
+              <div class="en">ZON MO Co., Ltd.</div>
             </div>
           </div>
           <p>專注鋁合金模板、傳統模板與地下結構／逆打工法施工，累積住宅、產業園區、公共建設與土木工程實績，提供值得信賴的模板工程解決方案。</p>
@@ -1049,7 +1049,7 @@ const Navbar = () => (
           <img src="/static/logo_white.png" alt="中華鋁模有限公司 Logo" class="nav-logo-img" />
           <div class="nav-logo-text">
             <div class="cn">中華鋁模有限公司</div>
-            <div class="en">CHUN HAN Engineering</div>
+            <div class="en">ZON MO</div>
           </div>
         </a>
         <div class="nav-links">
