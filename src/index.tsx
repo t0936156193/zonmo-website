@@ -224,6 +224,20 @@ const countObs = new IntersectionObserver(entries => {
 }, { threshold: .5 });
 document.querySelectorAll('[data-target]').forEach(el => countObs.observe(el));
 
+/* ---- Hero Video Background ---- */
+const heroBg = document.querySelector('.hero-video-bg') as HTMLVideoElement | null;
+if (heroBg) {
+  const showVideo = () => heroBg.classList.add('loaded');
+  if (heroBg.readyState >= 3) {
+    showVideo();
+  } else {
+    heroBg.addEventListener('canplaythrough', showVideo, { once: true });
+    heroBg.addEventListener('loadeddata', showVideo, { once: true });
+  }
+  // iOS Safari fallback
+  setTimeout(showVideo, 2000);
+}
+
 /* ---- Particles ---- */
 const container = document.querySelector('.hero-particles');
 if (container) {
@@ -315,6 +329,16 @@ if (container) {
 // ── Hero Section ─────────────────────────────────────────────────────────────
 const Hero = () => (
   <section class="hero">
+    <video
+      class="hero-video-bg"
+      src="/static/hero_video.mp4"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+    ></video>
+    <div class="hero-video-overlay"></div>
     <div class="hero-bg-grid"></div>
     <div class="hero-particles"></div>
     <div class="hero-content">
