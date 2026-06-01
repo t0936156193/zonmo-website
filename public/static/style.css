@@ -190,40 +190,63 @@ ul { list-style: none; }
   min-height: 100vh;
   background: var(--black);
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   position: relative;
   overflow: hidden;
   padding-top: 68px;
+  padding-bottom: 80px;
 }
 
-/* 空拍影片背景 */
-.hero-video-bg {
-  position: absolute;
-  inset: 0;
+/* 內嵌影片區塊（文字下方） */
+.hero-video-embed {
+  margin-top: 52px;
+  width: 100%;
+  max-width: 720px;
+}
+.hero-video-embed-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255,255,255,.45);
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  justify-content: center;
+}
+.hero-video-embed-label i { color: var(--accent); font-size: .8rem; }
+.hero-video-embed-wrap {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 16px 60px rgba(0,0,0,0.55), 0 0 0 1px rgba(42,143,191,.18);
+  aspect-ratio: 16/9;
+}
+.hero-video-embed-player {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
-  z-index: 0;
-  opacity: 0;
-  transition: opacity 1.2s ease;
+  display: block;
 }
-.hero-video-bg.loaded {
-  opacity: 1;
-}
-
-/* 影片遮罩：讓文字可讀性更佳 */
-.hero-video-overlay {
+.hero-video-embed-badge {
   position: absolute;
-  inset: 0;
-  z-index: 1;
-  background: linear-gradient(
-    to bottom,
-    rgba(0,0,0,0.55) 0%,
-    rgba(0,0,0,0.35) 40%,
-    rgba(0,0,0,0.55) 100%
-  );
+  top: 12px;
+  right: 12px;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  font-size: .7rem;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  letter-spacing: .08em;
+  pointer-events: none;
 }
 
 /* 工業格紋背景 */
@@ -277,7 +300,11 @@ ul { list-style: none; }
   text-align: center;
   color: var(--white);
   max-width: 860px;
+  width: 100%;
   padding: 48px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* 英文小標（工業感副標） */

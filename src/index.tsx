@@ -329,16 +329,6 @@ if (container) {
 // ── Hero Section ─────────────────────────────────────────────────────────────
 const Hero = () => (
   <section class="hero">
-    <video
-      class="hero-video-bg"
-      src="/static/hero_video.mp4"
-      autoplay
-      muted
-      loop
-      playsinline
-      preload="auto"
-    ></video>
-    <div class="hero-video-overlay"></div>
     <div class="hero-bg-grid"></div>
     <div class="hero-particles"></div>
     <div class="hero-content">
@@ -381,6 +371,29 @@ const Hero = () => (
         <div class="stat-item">
           <div class="stat-number" data-target="6" data-suffix="+">0+</div>
           <div class="stat-label">代表工程案例</div>
+        </div>
+      </div>
+
+      {/* 空拍影片（縮小嵌入，文字下方） */}
+      <div class="hero-video-embed fade-in">
+        <div class="hero-video-embed-label">
+          <i class="fas fa-video"></i>
+          <span>土城雲宇宙建案｜空拍實況</span>
+        </div>
+        <div class="hero-video-embed-wrap">
+          <video
+            class="hero-video-embed-player"
+            src="/static/hero_video.mp4"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="auto"
+          ></video>
+          <div class="hero-video-embed-badge">
+            <i class="fas fa-circle" style="color:#e74c3c;font-size:7px"></i>
+            <span>LIVE REC</span>
+          </div>
         </div>
       </div>
     </div>
