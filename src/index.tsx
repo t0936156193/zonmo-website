@@ -224,18 +224,10 @@ const countObs = new IntersectionObserver(entries => {
 }, { threshold: .5 });
 document.querySelectorAll('[data-target]').forEach(el => countObs.observe(el));
 
-/* ---- Hero Video Background ---- */
-const heroBg = document.querySelector('.hero-video-bg') as HTMLVideoElement | null;
-if (heroBg) {
-  const showVideo = () => heroBg.classList.add('loaded');
-  if (heroBg.readyState >= 3) {
-    showVideo();
-  } else {
-    heroBg.addEventListener('canplaythrough', showVideo, { once: true });
-    heroBg.addEventListener('loadeddata', showVideo, { once: true });
-  }
-  // iOS Safari fallback
-  setTimeout(showVideo, 2000);
+/* ---- Hero Video Embed Autoplay Fallback ---- */
+const heroEmbed = document.querySelector('.hero-video-embed-player');
+if (heroEmbed) {
+  heroEmbed.play && heroEmbed.play().catch(() => {});
 }
 
 /* ---- Particles ---- */
