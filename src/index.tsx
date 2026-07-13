@@ -21,31 +21,31 @@ app.get('/sitemap.xml', (c) => {
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://zonmo.com.tw/</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://zonmo.com.tw/#about</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://zonmo.com.tw/#services</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://zonmo.com.tw/#projects</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://zonmo.com.tw/#contact</loc>
-    <lastmod>2026-05-04</lastmod>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -73,11 +73,16 @@ const renderer = jsxRenderer(({ children, title }: { children?: any; title?: str
       <meta property="og:description" content="專注鋁合金模板、傳統模板與地下結構／逆打工法，累計承攬總額逾 5.7 億，為住宅、商業與公共建設提供精準施工服務。" />
       <meta property="og:site_name" content="中華鋁模有限公司" />
       <meta property="og:locale" content="zh_TW" />
+      <meta property="og:image" content="https://zonmo.com.tw/static/og-image.jpg" />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:image:alt" content="中華鋁模有限公司｜雲宇宙建案施工空拍實況" />
 
       {/* Twitter Card */}
-      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content="中華鋁模有限公司 | 鋁合金模板・逆打工法工程專家" />
       <meta name="twitter:description" content="專注鋁合金模板、傳統模板與逆打工法施工，具深地下工程與大型建案實績。" />
+      <meta name="twitter:image" content="https://zonmo.com.tw/static/og-image.jpg" />
 
       {/* 結構化資料 JSON-LD */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
@@ -353,7 +358,7 @@ const Hero = () => (
           <div class="stat-label">累計承攬總額</div>
         </div>
         <div class="stat-item">
-          <div class="stat-number" data-target="2.4" data-decimals="1" data-suffix=" 億+">0</div>
+          <div class="stat-number" data-target="2.4" data-decimals="1" data-suffix=" 億">0</div>
           <div class="stat-label">單案最高承攬</div>
         </div>
         <div class="stat-item">
@@ -602,6 +607,7 @@ const projectRecords = [
     subName: '模板工程（二）',
     location: '新北市土城',
     floors: '16F / B5',
+    year: '2024',
     amount: '2,700 萬',
     tag: '產業園區',
     icon: 'fas fa-industry',
@@ -614,6 +620,7 @@ const projectRecords = [
     subName: '鋁製模板工程',
     location: '台北市松山區',
     floors: 'B4',
+    year: '2024',
     amount: '2 億 4,000 萬',
     tag: '住宅建案',
     icon: 'fas fa-building',
@@ -626,6 +633,7 @@ const projectRecords = [
     subName: '模板工程',
     location: '台北市松山區',
     floors: '21F',
+    year: '2024',
     amount: '1 億 4,000 萬',
     tag: '住宅建案',
     icon: 'fas fa-building',
@@ -637,7 +645,8 @@ const projectRecords = [
     name: '大直軍事博物館',
     subName: '模板工程',
     location: '台北市大直',
-    floors: '地上 7 層 / 地下 3 層',
+    floors: '博物館建築',
+    year: '2023',
     amount: '5,500 萬',
     tag: '公共建設',
     icon: 'fas fa-landmark',
@@ -650,6 +659,7 @@ const projectRecords = [
     subName: '模板工程',
     location: '新北市新莊',
     floors: '地下滯洪池',
+    year: '2023',
     amount: '2,700 萬',
     tag: '公共建設',
     icon: 'fas fa-water',
@@ -662,6 +672,7 @@ const projectRecords = [
     subName: '模板工程',
     location: '桃園市龜山',
     floors: '涵洞工程',
+    year: '2023',
     amount: '7,000 萬',
     tag: '基礎工程',
     icon: 'fas fa-hard-hat',
@@ -691,8 +702,10 @@ const Projects = () => (
           <div class="records-thead">
             <div class="rec-col rec-no">編號</div>
             <div class="rec-col rec-name">工地名稱</div>
+            <div class="rec-col rec-owner">業主</div>
             <div class="rec-col rec-loc">地點</div>
             <div class="rec-col rec-floors">規模</div>
+            <div class="rec-col rec-year">年度</div>
             <div class="rec-col rec-amount">合約金額</div>
           </div>
           {/* Table Rows */}
@@ -711,6 +724,10 @@ const Projects = () => (
                 </div>
                 <span class="rec-tag">{r.tag}</span>
               </div>
+              <div class="rec-col rec-owner">
+                <i class="fas fa-user-tie rec-owner-icon"></i>
+                {r.owner}
+              </div>
               <div class="rec-col rec-loc">
                 <i class="fas fa-map-marker-alt rec-loc-icon"></i>
                 {r.location}
@@ -719,6 +736,7 @@ const Projects = () => (
                 <i class="fas fa-layer-group rec-floors-icon"></i>
                 {r.floors}
               </div>
+              <div class="rec-col rec-year">{r.year}</div>
               <div class="rec-col rec-amount">
                 <span class="rec-amount-val">{r.amount}</span>
               </div>
@@ -798,7 +816,7 @@ const Projects = () => (
             src="/static/hero_video.mp4"
             controls
             preload="metadata"
-            poster="/static/logo_transparent.png"
+            poster="/static/drone-poster.jpg"
             playsinline
           ></video>
           <div class="drone-video-badge">
@@ -1042,7 +1060,7 @@ const Footer = () => (
         </div>
       </div>
       <div class="footer-bottom">
-        <p>Copyright © 2025 ZONMO · 中華鋁模有限公司 · All rights reserved.</p>
+        <p>Copyright © 2026 ZONMO · 中華鋁模有限公司 · All rights reserved.</p>
         <div class="footer-bottom-links">
           <a href="#" data-modal="privacy">隱私政策</a>
           <a href="#contact">聯絡我們</a>
@@ -1058,7 +1076,7 @@ const Footer = () => (
           <button id="modal-close-btn" class="modal-close"><i class="fas fa-times"></i></button>
         </div>
         <div class="modal-body">
-          <p>最後更新：2025 年 1 月</p>
+          <p>最後更新：2026 年 7 月</p>
           <h3>一、資料蒐集與使用目的</h3>
           <p>中華鋁模有限公司（以下簡稱「本公司」）在您使用本網站服務時，可能蒐集您的個人資料，包含：姓名、聯絡電話、電子信箱及詢問內容。蒐集目的為提供工程諮詢回覆、聯絡洽談及後續服務。</p>
           <h3>二、資料保護</h3>

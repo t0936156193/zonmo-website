@@ -987,8 +987,10 @@ section { padding: 100px 0; }
 .rec-col { padding: 0 10px; }
 .rec-no     { width: 60px;  flex-shrink: 0; padding-left: 0; }
 .rec-name   { flex: 1;      min-width: 0; }
-.rec-loc    { width: 130px; flex-shrink: 0; }
-.rec-floors { width: 170px; flex-shrink: 0; }
+.rec-owner  { width: 110px; flex-shrink: 0; }
+.rec-loc    { width: 125px; flex-shrink: 0; }
+.rec-floors { width: 140px; flex-shrink: 0; }
+.rec-year   { width: 64px;  flex-shrink: 0; }
 .rec-amount { width: 130px; flex-shrink: 0; text-align: right; padding-right: 0; }
 
 /* 編號 */
@@ -1038,6 +1040,24 @@ section { padding: 100px 0; }
   font-weight: 700;
   padding: 2px 10px;
   border-radius: 2px;
+  letter-spacing: .5px;
+}
+
+/* 業主 */
+.rec-col.rec-owner {
+  font-size: .86rem;
+  font-weight: 500;
+  color: var(--gray-800);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.rec-owner-icon { color: var(--accent); font-size: 11px; flex-shrink: 0; }
+
+/* 年度 */
+.rec-col.rec-year {
+  font-size: .84rem;
+  color: var(--gray);
   letter-spacing: .5px;
 }
 
@@ -1168,11 +1188,13 @@ section { padding: 100px 0; }
 /* RWD — 中小尺寸隱藏次要欄位 */
 @media (max-width: 960px) {
   .rec-floors { display: none; }
+  .rec-year   { display: none; }
   .rec-amount { width: 110px; }
 }
 @media (max-width: 720px) {
   .records-row,
   .records-thead { padding: 14px 16px; }
+  .rec-owner  { display: none; }
   .rec-loc    { width: 110px; }
   .rec-amount { width: 90px; }
   .rec-no     { width: 44px; }
@@ -1202,6 +1224,47 @@ section { padding: 100px 0; }
   /* 隱藏地點與規模欄（卡片內嵌） */
   .rec-col.rec-loc,
   .rec-col.rec-floors { display: none; }
+
+  /* 業主：名稱下方帶標籤一行 */
+  .rec-col.rec-owner {
+    display: flex !important;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px dashed var(--light);
+    align-items: center;
+    justify-content: space-between;
+    font-size: .86rem;
+  }
+  .rec-col.rec-owner::before {
+    content: '業主';
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--gray);
+    text-transform: uppercase;
+    order: -1;
+  }
+  .rec-owner-icon { display: none; }
+
+  /* 年度：與金額同層級一行 */
+  .rec-col.rec-year {
+    display: flex !important;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px dashed var(--light);
+    align-items: center;
+    justify-content: space-between;
+    font-size: .86rem;
+    color: var(--gray-800);
+  }
+  .rec-col.rec-year::before {
+    content: '年度';
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--gray);
+    text-transform: uppercase;
+  }
 
   /* 編號：右上角小標籤 */
   .rec-col.rec-no {
