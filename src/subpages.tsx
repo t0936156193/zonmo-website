@@ -7,7 +7,7 @@ export type Block = { h: string; p?: string[]; list?: string[] }
 export type Spec = { label: string; value: string }
 export type SubPage = {
   path: string
-  kind: 'service' | 'project' | 'area' | 'projects-index'
+  kind: 'service' | 'project' | 'area' | 'projects-index' | 'article' | 'articles-index'
   title: string          // <title>
   desc: string           // meta description
   h1: string
@@ -579,11 +579,12 @@ export const AREAS: SubPage[] = [
   },
 ]
 
-export const ALL_SUBPAGES: SubPage[] = [...SERVICES, PROJECTS_INDEX, ...PROJECTS, ...AREAS]
+import { ARTICLES, ARTICLES_INDEX } from './articles'
+export const ALL_SUBPAGES: SubPage[] = [...SERVICES, PROJECTS_INDEX, ...PROJECTS, ...AREAS, ARTICLES_INDEX, ...ARTICLES]
 
 export function sitemapXml(): string {
   const today = '2026-09-22'
-  const urls = [{ loc: SITE + '/', pri: '1.0' }, ...ALL_SUBPAGES.map(p => ({ loc: SITE + p.path, pri: p.kind === 'project' ? '0.7' : '0.8' }))]
+  const urls = [{ loc: SITE + '/', pri: '1.0' }, ...ALL_SUBPAGES.map(p => ({ loc: SITE + p.path, pri: p.kind === 'project' || p.kind === 'article' ? '0.7' : '0.8' }))]
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls.map(u => `  <url>
@@ -601,7 +602,8 @@ const crumbs = (p: SubPage) => {
   const mid =
     p.kind === 'service' ? { label: '服務項目', href: '/#services' } :
     p.kind === 'project' ? { label: '工程實績', href: '/projects' } :
-    p.kind === 'area' ? { label: '服務地區', href: '/#contact' } : null
+    p.kind === 'area' ? { label: '服務地區', href: '/#contact' } :
+    p.kind === 'article' ? { label: '工程知識', href: '/articles' } : null
   return [{ label: '首頁', href: '/' }, ...(mid ? [mid] : []), { label: p.h1, href: p.path }]
 }
 
@@ -621,7 +623,8 @@ export function pageJsonLd(p: SubPage) {
   if (p.kind === 'area') {
     return { '@context': 'https://schema.org', '@type': 'Service', name: p.h1, description: p.desc, provider: org, areaServed: p.h1.replace('模板工程', ''), url: SITE + p.path }
   }
-  return { '@context': 'https://schema.org', '@type': 'Article', headline: p.h1, description: p.desc, image: SITE + p.ogImage, author: org, publisher: org, mainEntityOfPage: SITE + p.path }
+  const a = p as any
+  return { '@context': 'https://schema.org', '@type': 'Article', headline: p.h1, description: p.desc, image: SITE + p.ogImage, author: org, publisher: org, mainEntityOfPage: SITE + p.path, ...(a.date ? { datePublished: a.date, dateModified: a.date } : {}) }
 }
 
 export const SubPageBody = ({ page, children }: { page: SubPage; children?: any }) => (
@@ -692,6 +695,7 @@ export const SubPageBody = ({ page, children }: { page: SubPage; children?: any 
             <ul class="aside-links">
               {SERVICES.map(s => <li><a href={s.path}><i class="fas fa-chevron-right"></i> {s.h1}</a></li>)}
               <li><a href="/projects"><i class="fas fa-chevron-right"></i> 工程實績</a></li>
+              <li><a href="/articles"><i class="fas fa-chevron-right"></i> 工程知識</a></li>
             </ul>
           </div>
         </aside>

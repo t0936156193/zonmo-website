@@ -2,6 +2,7 @@ import { Hono } from 'hono'
 import { jsxRenderer } from 'hono/jsx-renderer'
 import { serveStatic } from 'hono/cloudflare-workers'
 import { ALL_SUBPAGES, PROJECTS_INDEX, SubPageBody, ProjectCards, sitemapXml, breadcrumbJsonLd, pageJsonLd } from './subpages'
+import { ArticleCards } from './articles'
 
 type Bindings = { LINE_CHANNEL_TOKEN?: string; LINE_USER_ID?: string }
 const app = new Hono<{ Bindings: Bindings }>()
@@ -24,7 +25,7 @@ app.get('/sitemap.xml', (c) => {
 
 // Layout renderer
 type PageMeta = { title?: string; description?: string; canonical?: string; ogImage?: string; ogAlt?: string; keywords?: string; jsonLd?: object[]; sub?: boolean }
-const CSS_VERSION = '20260922d' // 改 style.css 就升版本，否則使用者瀏覽器會用快取的舊 CSS（max-age 4 小時）
+const CSS_VERSION = '20260922e' // 改 style.css 就升版本，否則使用者瀏覽器會用快取的舊 CSS（max-age 4 小時）
 const DEFAULT_DESC = '中華鋁模有限公司專注鋁合金模板、傳統模板與地下結構／逆打工法施工，具住宅、產業園區、公共建設與土木工程實績，累計承攬總額逾 5.7 億，提供精準、高效、安全的模板工程解決方案。'
 const renderer = jsxRenderer(({ children, title, description, canonical, ogImage, ogAlt, keywords, jsonLd, sub }: { children?: any } & PageMeta) => (
   <html lang="zh-TW">
@@ -1126,6 +1127,7 @@ const Footer = () => (
             <li><a href="/#values"><i class="fas fa-chevron-right"></i> 核心優勢</a></li>
             <li><a href="/#services"><i class="fas fa-chevron-right"></i> 服務項目</a></li>
             <li><a href="/projects"><i class="fas fa-chevron-right"></i> 工程實績</a></li>
+            <li><a href="/articles"><i class="fas fa-chevron-right"></i> 工程知識</a></li>
             <li><a href="/#contact"><i class="fas fa-chevron-right"></i> 聯絡我們</a></li>
             <li><a href="/#recruitment"><i class="fas fa-chevron-right"></i> 人才招募</a></li>
           </ul>
@@ -1216,6 +1218,7 @@ const Navbar = () => (
           <a href="/#values">核心優勢</a>
           <a href="/#services">服務項目</a>
           <a href="/projects">工程實績</a>
+          <a href="/articles">工程知識</a>
           <a href="/#recruitment">人才招募</a>
           <a href="/#contact" class="nav-cta">立即洽詢</a>
         </div>
@@ -1258,6 +1261,7 @@ for (const page of ALL_SUBPAGES) {
         <Navbar />
         <SubPageBody page={page}>
           {page.kind === 'projects-index' && <ProjectCards />}
+          {page.kind === 'articles-index' && <ArticleCards />}
         </SubPageBody>
         <Footer />
         <button id="scroll-top" title="回到頂端"><i class="fas fa-chevron-up"></i></button>

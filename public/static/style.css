@@ -2208,3 +2208,16 @@ footer {
   .sub-photos { grid-template-columns: 1fr; }
   .sub-hero-actions .btn-primary, .sub-hero-actions .btn-outline { width: 100%; justify-content: center; }
 }
+
+/* 工程知識 */
+.article-date { font-size: .82rem; color: rgba(255,255,255,.55); margin: -8px 0 14px; letter-spacing: 1px; }
+.article-list { display: flex; flex-direction: column; gap: 18px; }
+.article-card {
+  display: block; background: var(--white); border: 1px solid var(--light); padding: 26px 28px;
+  border-left: 4px solid var(--accent); transition: transform var(--transition), box-shadow var(--transition);
+}
+.article-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+.article-card-meta { display: flex; gap: 16px; font-size: .78rem; color: var(--gray); letter-spacing: 1px; margin-bottom: 8px; }
+.article-card h3 { font-size: 1.2rem; font-weight: 800; color: var(--dark); margin-bottom: 8px; line-height: 1.4; }
+.article-card p { font-size: .92rem; color: var(--gray); line-height: 1.8; }
+.article-card .service-more { margin-top: 10px; }
