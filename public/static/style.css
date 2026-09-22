@@ -2172,11 +2172,24 @@ footer {
 .project-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
 .project-card img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
 .project-card-placeholder {
-  aspect-ratio: 16 / 9; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
-  background: linear-gradient(135deg, var(--dark) 0%, var(--dark-3) 100%); color: rgba(255,255,255,.85);
+  aspect-ratio: 16 / 9; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
+  position: relative; overflow: hidden; color: rgba(255,255,255,.9);
+  background: linear-gradient(135deg, var(--black) 0%, var(--dark) 55%, var(--dark-3) 100%);
 }
-.project-card-placeholder i { font-size: 44px; color: var(--accent-lt); }
-.project-card-placeholder span { font-size: .85rem; letter-spacing: 2px; }
+.project-card-placeholder::before {
+  content: ''; position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+.project-card-placeholder::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: var(--accent);
+}
+.project-card-placeholder i {
+  position: relative; font-size: 30px; color: var(--accent-lt);
+  width: 72px; height: 72px; display: flex; align-items: center; justify-content: center;
+  border: 1px solid rgba(77,176,219,.45); border-radius: 50%; background: rgba(42,143,191,.12);
+}
+.project-card-placeholder span { position: relative; font-size: .8rem; letter-spacing: 3px; font-weight: 600; text-transform: uppercase; }
 .project-card-body { padding: 22px 24px 24px; }
 .project-card h3 { font-size: 1.1rem; font-weight: 800; color: var(--dark); margin: 6px 0 10px; line-height: 1.4; }
 .project-card p { font-size: .88rem; color: var(--gray); line-height: 1.75; }
