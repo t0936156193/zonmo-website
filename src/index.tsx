@@ -26,6 +26,8 @@ app.get('/sitemap.xml', (c) => {
 // Layout renderer
 type PageMeta = { title?: string; description?: string; canonical?: string; ogImage?: string; ogAlt?: string; keywords?: string; jsonLd?: object[]; sub?: boolean }
 const CSS_VERSION = '20260922e' // 改 style.css 就升版本，否則使用者瀏覽器會用快取的舊 CSS（max-age 4 小時）
+// GA4 評估 ID（資源「中華鋁模官網」555333777，掛在佑昇 GA 帳戶下）。空字串＝不載入追蹤碼。事件：phone_click／email_click／generate_lead（表單送出成功）。
+const GA_ID = 'G-RKGHFZP6N6'
 const DEFAULT_DESC = '中華鋁模有限公司專注鋁合金模板、傳統模板與地下結構／逆打工法施工，具住宅、產業園區、公共建設與土木工程實績，累計承攬總額逾 5.7 億，提供精準、高效、安全的模板工程解決方案。'
 const renderer = jsxRenderer(({ children, title, description, canonical, ogImage, ogAlt, keywords, jsonLd, sub }: { children?: any } & PageMeta) => (
   <html lang="zh-TW">
@@ -78,6 +80,8 @@ const renderer = jsxRenderer(({ children, title, description, canonical, ogImage
       })}} />
       {(jsonLd || []).map(j => <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(j) }} />)}
 
+      {GA_ID && <script async src={"https://www.googletagmanager.com/gtag/js?id=" + GA_ID}></script>}
+      {GA_ID && <script dangerouslySetInnerHTML={{ __html: "window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','" + GA_ID + "');" }} />}
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;800;900&display=swap" />
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -216,7 +220,21 @@ app.post('/api/contact', async (c) => {
 app.use(renderer)
 
 // ── Main script ─────────────────────────────────────────────────────────────
-const mainScript = `
+// ── 轉換事件（首頁與內頁共用）：點電話、點 Email、表單成功 → GA4 事件 ──
+const trackScript = `
+window.zonmoTrack = function(name, params) {
+  if (typeof gtag === 'function') gtag('event', name, params || {});
+};
+document.addEventListener('click', e => {
+  const a = e.target.closest && e.target.closest('a[href]');
+  if (!a) return;
+  const h = a.getAttribute('href') || '';
+  if (h.indexOf('tel:') === 0) window.zonmoTrack('phone_click', { link_url: h, page_path: location.pathname });
+  else if (h.indexOf('mailto:') === 0) window.zonmoTrack('email_click', { link_url: h, page_path: location.pathname });
+});
+`
+
+const mainScript = trackScript + `
 /* ---- Navbar scroll ---- */
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
@@ -288,6 +306,7 @@ if (form) {
         headers: { 'Accept': 'application/json' }
       });
       if (res.ok) {
+        window.zonmoTrack('generate_lead', { method: 'contact_form', page_path: location.pathname });
         btn.textContent = '✓ 已送出！我們將盡快與您聯繫';
         btn.style.background = '#1a6e96';
         form.reset();
@@ -1231,7 +1250,7 @@ const Navbar = () => (
 )
 
 // ── 內頁腳本（沒有輪播／表單／計數器，避免 mainScript 抓不到元素報錯）──
-const subScript = `
+const subScript = trackScript + `
 const navbar = document.getElementById('navbar');
 navbar.classList.add('scrolled');
 const hamburger = document.querySelector('.hamburger');
