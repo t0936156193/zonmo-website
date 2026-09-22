@@ -24,7 +24,7 @@ app.get('/sitemap.xml', (c) => {
 
 // Layout renderer
 type PageMeta = { title?: string; description?: string; canonical?: string; ogImage?: string; ogAlt?: string; keywords?: string; jsonLd?: object[]; sub?: boolean }
-const CSS_VERSION = '20260922c' // 改 style.css 就升版本，否則使用者瀏覽器會用快取的舊 CSS（max-age 4 小時）
+const CSS_VERSION = '20260922d' // 改 style.css 就升版本，否則使用者瀏覽器會用快取的舊 CSS（max-age 4 小時）
 const DEFAULT_DESC = '中華鋁模有限公司專注鋁合金模板、傳統模板與地下結構／逆打工法施工，具住宅、產業園區、公共建設與土木工程實績，累計承攬總額逾 5.7 億，提供精準、高效、安全的模板工程解決方案。'
 const renderer = jsxRenderer(({ children, title, description, canonical, ogImage, ogAlt, keywords, jsonLd, sub }: { children?: any } & PageMeta) => (
   <html lang="zh-TW">

@@ -102,8 +102,8 @@ export const SERVICES: SubPage[] = [
     h1: '傳統模板工程',
     kicker: 'TRADITIONAL FORMWORK',
     lead: '不是每個案子都適合鋁模。造型特殊、樓層少、地下結構或土木工程，傳統模板的彈性仍然無可取代。中華鋁模自 2000 年以傳統模板起家，這是我們最深的底子。',
-    ogImage: '/static/photos/work-04.jpg',
-    ogAlt: '工地多人協同作業',
+    ogImage: '/static/logo.png',
+    ogAlt: '中華鋁模有限公司',
     keywords: '模板工程,傳統模板工程,模板工程承包,模板分包,木模工程,系統模板,模板施工',
     blocks: [
       {
@@ -138,12 +138,6 @@ export const SERVICES: SubPage[] = [
           '涵洞／排水工程模板工程（桃園市龜山，業主萬鼎工程），合約 7,000 萬元。',
         ],
       },
-    ],
-    photos: [
-      { src: '/static/photos/work-04.jpg', alt: '工地多人協同作業' },
-      { src: '/static/photos/work-05.jpg', alt: '模板精準對位施工' },
-      { src: '/static/photos/work-07.jpg', alt: '室內雷射水平校準' },
-      { src: '/static/photos/work-08.jpg', alt: '模板拆卸精細操作' },
     ],
     related: [
       { label: '鋁合金模板工程', href: '/services/aluminum-formwork' },
@@ -275,8 +269,9 @@ export const PROJECTS: SubPage[] = [
     h1: '鳴森苑住宅新建工程｜模板工程',
     kicker: 'PROJECT · MINGSEN RESIDENCE',
     lead: '同一個都更案的地上結構，地上 21 層 SRC 構造，以傳統模板客製化施工，合約 1 億 4,000 萬元。',
-    ogImage: '/static/photos/work-04.jpg',
-    ogAlt: '鳴森苑模板工程施工現場',
+    ogImage: '/static/logo.png',
+    ogAlt: '中華鋁模有限公司',
+    cardIcon: 'fas fa-building',
     keywords: '鳴森苑 模板工程,SRC 模板,松山區 模板工程,中華工程 模板',
     specs: [
       { label: '業主', value: '中華工程' },
@@ -301,10 +296,6 @@ export const PROJECTS: SubPage[] = [
           '與鋁模工程整合：地上標準層與其他區域的模板由同一團隊規劃，減少營造廠的介面協調成本。',
         ],
       },
-    ],
-    photos: [
-      { src: '/static/photos/work-04.jpg', alt: '工地多人協同作業' },
-      { src: '/static/photos/work-02.jpg', alt: '高空鷹架精密施工中' },
     ],
     related: [
       { label: '鳴森苑鋁製模板工程', href: '/projects/mingsen-aluminum-formwork' },
