@@ -695,10 +695,6 @@ const photoData = [
   { src: '/static/photos/work-06.jpg', caption: '天花板底模安裝作業', tag: '天花板模板' },
   { src: '/static/photos/work-07.jpg', caption: '室內雷射水平校準', tag: '精密測量' },
   { src: '/static/photos/work-08.jpg', caption: '模板拆卸精細操作', tag: '拆模作業' },
-  { src: '/static/photos/work-09.jpg', caption: '鋁合金模板牆體組立施工', tag: '模板安裝' },
-  { src: '/static/photos/work-10.jpg', caption: '鋁模板系統備料整備', tag: '材料管理' },
-  { src: '/static/photos/work-12.jpg', caption: '天花板鋁模板底層施工', tag: '樓板模板' },
-  { src: '/static/photos/work-13.jpg', caption: '鋁模板節點接合細部', tag: '精密施工' },
 ]
 
 // 代表工程實績資料

@@ -36,8 +36,8 @@ export const SERVICES: SubPage[] = [
     h1: '鋁合金模板工程',
     kicker: 'ALUMINUM FORMWORK',
     lead: '鋁模不是把木模換成鋁板而已，關鍵在配板規劃與週轉節奏。中華鋁模以單案 2.4 億的鋁模施工實績，協助營造廠在標準層建案取得更穩定的進度與完成面品質。',
-    ogImage: '/static/photos/work-09.jpg',
-    ogAlt: '鋁合金模板牆體組立施工',
+    ogImage: '/static/photos/work-01.jpg',
+    ogAlt: '鋁模板現場組裝作業',
     keywords: '鋁模工程,鋁合金模板工程,鋁模施工,鋁模板廠商,鋁模板施工,鋁模承包,鋁模分包',
     blocks: [
       {
@@ -83,10 +83,10 @@ export const SERVICES: SubPage[] = [
       },
     ],
     photos: [
-      { src: '/static/photos/work-09.jpg', alt: '鋁合金模板牆體組立施工' },
+      { src: '/static/photos/work-01.jpg', alt: '鋁模板現場組裝作業' },
       { src: '/static/photos/work-03.jpg', alt: '鋁模板大面積牆面安裝' },
       { src: '/static/photos/work-06.jpg', alt: '天花板底模安裝作業' },
-      { src: '/static/photos/work-13.jpg', alt: '鋁模板節點接合細部' },
+      { src: '/static/photos/work-05.jpg', alt: '模板精準對位施工' },
     ],
     related: [
       { label: '傳統模板工程', href: '/services/traditional-formwork' },
@@ -197,8 +197,8 @@ export const SERVICES: SubPage[] = [
     photos: [
       { src: '/static/drone-poster.jpg', alt: '土城雲宇宙建案空拍' },
       { src: '/static/photos/work-01.jpg', alt: '鋁模板現場組裝作業' },
-      { src: '/static/photos/work-10.jpg', alt: '鋁模板系統備料整備' },
-      { src: '/static/photos/work-12.jpg', alt: '天花板鋁模板底層施工' },
+      { src: '/static/photos/work-03.jpg', alt: '鋁模板大面積牆面安裝' },
+      { src: '/static/photos/work-08.jpg', alt: '模板拆卸精細操作' },
     ],
     related: [
       { label: '雲宇宙產業園區實績', href: '/projects/yunyuzhou-industrial-park' },
@@ -218,8 +218,8 @@ export const PROJECTS: SubPage[] = [
     h1: '鳴森苑住宅新建工程｜鋁製模板工程',
     kicker: 'PROJECT · MINGSEN RESIDENCE',
     lead: '民生社區百億都更案，中華鋁模承攬鋁製模板工程，合約 2 億 4,000 萬元，是公司成立以來單案承攬金額最高的工程。',
-    ogImage: '/static/photos/work-09.jpg',
-    ogAlt: '鳴森苑鋁合金模板牆體組立施工',
+    ogImage: '/static/photos/work-01.jpg',
+    ogAlt: '鳴森苑鋁模板現場組裝作業',
     keywords: '鳴森苑,鳴森苑 鋁模,鳴森苑 模板,民生社區 都更,中華工程 鋁模',
     specs: [
       { label: '業主', value: '中華工程' },
@@ -258,10 +258,8 @@ export const PROJECTS: SubPage[] = [
       { src: '/static/photos/work-06.jpg', alt: '天花板底模安裝作業' },
       { src: '/static/photos/work-07.jpg', alt: '室內雷射水平校準' },
       { src: '/static/photos/work-08.jpg', alt: '模板拆卸精細操作' },
-      { src: '/static/photos/work-09.jpg', alt: '鋁合金模板牆體組立施工' },
-      { src: '/static/photos/work-10.jpg', alt: '鋁模板系統備料整備' },
-      { src: '/static/photos/work-12.jpg', alt: '天花板鋁模板底層施工' },
-      { src: '/static/photos/work-13.jpg', alt: '鋁模板節點接合細部' },
+      { src: '/static/photos/work-03.jpg', alt: '鋁模板大面積牆面安裝' },
+      { src: '/static/photos/work-08.jpg', alt: '模板拆卸精細操作' },
     ],
     related: [
       { label: '鳴森苑模板工程（地上 21 層）', href: '/projects/mingsen-formwork' },
@@ -476,7 +474,7 @@ export const AREAS: SubPage[] = [
     h1: '台北市模板工程',
     kicker: 'SERVICE AREA · TAIPEI',
     lead: '台北市的案子多是都更與改建，基地小、鄰房近、地下層深。中華鋁模在松山區鳴森苑一案累積了都會區大型都更的鋁模與模板施工經驗。',
-    ogImage: '/static/photos/work-09.jpg',
+    ogImage: '/static/photos/work-01.jpg',
     ogAlt: '台北市鳴森苑鋁模施工',
     keywords: '台北 模板工程,台北市 鋁模,台北 模板承包,都更 模板工程,松山區 模板',
     blocks: [
