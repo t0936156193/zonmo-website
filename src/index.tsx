@@ -466,6 +466,7 @@ const Hero = () => (
       <h1 class="hero-title">
         <span class="accent-text">築基深地</span>
         <br />鑄造卓越
+        <span class="hero-title-tag">鋁合金模板・逆打工法・模板工程專家</span>
       </h1>
       <p class="hero-subtitle">
         中華鋁模有限公司｜專業模板工程的精準施工品質
@@ -633,7 +634,7 @@ const Services = () => (
           <h2 class="section-title">三大工程服務<br />對應不同案型需求</h2>
           <div class="section-divider"></div>
           <p class="section-desc">
-            依據銷售簡報內容，中華鋁模的核心服務聚焦於鋁合金模板、傳統模板與地下結構／逆打工法，
+            中華鋁模的核心服務聚焦於鋁合金模板工程、傳統模板工程與地下結構／逆打工法施工，
             從規劃到現場施作提供可落地的整合方案。
           </p>
           <div class="advantage-list">
