@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "webapp",
+  "name": "zonmo-website",
   "compatibility_date": "2026-03-27",
   "pages_build_output_dir": "./dist",
   "compatibility_flags": [
