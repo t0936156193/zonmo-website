@@ -2,7 +2,8 @@ import { Hono } from 'hono'
 import { jsxRenderer } from 'hono/jsx-renderer'
 import { serveStatic } from 'hono/cloudflare-workers'
 
-const app = new Hono()
+type Bindings = { LINE_CHANNEL_TOKEN?: string; LINE_USER_ID?: string }
+const app = new Hono<{ Bindings: Bindings }>()
 
 // Serve static files
 app.use('/static/*', serveStatic({ root: './public' }))
@@ -110,6 +111,129 @@ const renderer = jsxRenderer(({ children, title }: { children?: any; title?: str
   </html>
 ))
 
+
+// ── 聯絡表單 API：/api/contact → LINE 推播 ＋ 寫進 Google 試算表 ─────────────
+// 2026-09-22 從佑昇官網 functions/api/contact.js 移植（這站是 Hono，沒有 functions/ 目錄）。
+// 兩條線獨立：LINE 推播同步（沒設 secret 就跳過）；試算表用 waitUntil 背景寫。
+// 試算表：「佑昇_待開發客戶名單」跟佑昇共用，靠「來源」欄區分（這站是「中華鋁模官網表單」）。
+// WEBHOOK_KEY / APPS_SCRIPT_URL 要跟佑昇的 functions/api/contact.js、lead.js 一致，換版本三支都要改。
+const WEBHOOK_KEY = 'yoson-DgeojYqxjexc4z8v8vJWpLPYduXN'
+const APPS_SCRIPT_URL =
+  'https://script.google.com/macros/s/AKfycbw42TCuUkwrkp8BJA42N8mnGAC0zAPpMOBZCAzv6LwF8gaaNlFASrGMWmLjL1YUPxXC/exec'
+const SOURCE_NORMAL = '中華鋁模官網表單'
+const SOURCE_SPAM = '中華鋁模官網表單（疑似垃圾）'
+
+type Inquiry = { name: string; phone: string; email: string; category: string; message: string; js: string }
+type SpamResult = { isSpam: boolean; isBot: boolean; score: number; reasons: string[] }
+
+/** 09xxxxxxxx／0X-xxxxxxxx／+886... 都算台灣號碼 */
+function isTaiwanPhone(phone: string): boolean {
+  const p = String(phone || '').replace(/[\s\-()]/g, '').replace(/^\+?886/, '0')
+  return /^09\d{8}$/.test(p) || /^0[2-8]\d{7,8}$/.test(p)
+}
+
+/** 數有幾個「只在簡體中文會出現」的字（跟繁體字形不同的） */
+function countSimplified(s: string): number {
+  const SIMP = '请联电邮们这与网务过时间帮会详细价单业专营团队优质让关产品计软件开发设广告销术频视见说话页线统议论阅读经验应该觉谢问题东还从为样变长处'
+  const seen: Record<string, boolean> = {}
+  let n = 0
+  for (const ch of s || '') {
+    if (SIMP.indexOf(ch) !== -1 && !seen[ch]) { seen[ch] = true; n++ }
+  }
+  return n
+}
+
+/**
+ * 垃圾詢價評分（跟佑昇同一套）：≥4 疑似垃圾（LINE 加警示、進表標記）；≥6 機器人（假裝成功，不推 LINE 不進表）。
+ * 真客戶用台灣號碼＋繁體中文、從網頁送出 ＝ 0 分。
+ */
+function scoreSpam(d: Inquiry): SpamResult {
+  const hasChinese = (x: string) => /[\u4e00-\u9fff]/.test(x || '')
+  const reasons: string[] = []
+  let score = 0
+  if (!isTaiwanPhone(d.phone)) { score += 2; reasons.push('非台灣電話') }
+  if (d.message && !hasChinese(d.message)) { score += 2; reasons.push('內容無中文') }
+  if (!hasChinese(d.name)) { score += 1; reasons.push('姓名無中文') }
+  if (countSimplified((d.message || '') + (d.name || '')) >= 2) { score += 3; reasons.push('簡體字') }
+  if (!/^\d+$/.test(d.js || '')) { score += 3; reasons.push('無JS令牌') }
+  if (/https?:\/\/|www\./i.test(d.message || '')) { score += 2; reasons.push('含網址') }
+  const blob = ((d.message || '') + ' ' + (d.name || '')).toLowerCase()
+  const bait = ['news and updates', 'stay in the loop', 'keep me posted', 'backlink', 'guest post',
+    'seo service', 'web design', 'crypto', 'bitcoin', 'investment', 'casino', 'loan offer',
+    'hear more about', 'new content', 'discount code', '我想了解更多信息', '请通过', '与我联系']
+  for (const b of bait) { if (blob.indexOf(b) !== -1) { score += 2; reasons.push('垃圾常見句'); break } }
+  return { isSpam: score >= 4, isBot: score >= 6, score, reasons }
+}
+
+/** 包成跟 Google Ads webhook 一樣的 JSON 丟給 Apps Script（跟佑昇同一支腳本） */
+function saveToSheet(d: Inquiry, spam: SpamResult): Promise<Response> {
+  const col = (id: string, name: string, value: string) => ({ column_id: id, column_name: name, string_value: value || '' })
+  return fetch(APPS_SCRIPT_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    redirect: 'follow',
+    body: JSON.stringify({
+      google_key: WEBHOOK_KEY,
+      source: spam.isSpam ? SOURCE_SPAM : SOURCE_NORMAL,
+      user_column_data: [
+        col('FULL_NAME', '姓名', d.name),
+        col('PHONE_NUMBER', '電話', d.phone),
+        col('EMAIL', 'Email', d.email),
+        col('工作地點為何？', '工作地點', ''),
+        col('詢問類別', '詢問類別', d.category),
+        col('訊息內容', '訊息內容', d.message),
+      ],
+    }),
+  })
+}
+
+app.post('/api/contact', async (c) => {
+  try {
+    const form = await c.req.formData()
+    const pick = (k: string, max = 200) => (form.get(k) || '').toString().trim().slice(0, max)
+
+    // 蜜罐：機器人填了就假裝成功
+    if (pick('_honey') !== '') return c.json({ ok: true })
+
+    const d: Inquiry = {
+      name: pick('姓名'),
+      phone: pick('電話'),
+      email: pick('email'),
+      category: pick('詢問類別'),
+      message: pick('訊息內容', 1000),
+      js: pick('_js', 20),
+    }
+    if (!d.name || !d.phone) return c.json({ ok: false, error: 'missing_fields' }, 400)
+
+    const spam = scoreSpam(d)
+    if (spam.isBot) return c.json({ ok: true })   // 機器人：假裝成功，什麼都不做
+
+    c.executionCtx.waitUntil(saveToSheet(d, spam).catch(() => { /* 試算表掛了不能拖垮表單 */ }))
+
+    const token = c.env?.LINE_CHANNEL_TOKEN
+    const to = c.env?.LINE_USER_ID
+    if (token && to) {
+      const lines: string[] = []
+      if (spam.isSpam) { lines.push('⚠️【疑似垃圾詢價】判定：' + spam.reasons.join('、')); lines.push('') }
+      lines.push('📩【中華鋁模官網】新詢價單')
+      lines.push('姓名：' + d.name)
+      lines.push('電話：' + d.phone)
+      if (d.email) lines.push('信箱：' + d.email)
+      if (d.category) lines.push('類別：' + d.category)
+      if (d.message) lines.push('內容：' + d.message)
+      const res = await fetch('https://api.line.me/v2/bot/message/push', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + token },
+        body: JSON.stringify({ to, messages: [{ type: 'text', text: lines.join('\n') }] }),
+      })
+      if (!res.ok) return c.json({ ok: false, error: 'line_push_failed' }, 502)
+    }
+    return c.json({ ok: true })
+  } catch (e) {
+    return c.json({ ok: false, error: 'server_error' }, 500)
+  }
+})
+
 app.use(renderer)
 
 // ── Main script ─────────────────────────────────────────────────────────────
@@ -166,7 +290,8 @@ document.querySelectorAll('[data-modal="privacy"]').forEach(btn => {
 document.getElementById('modal-close-btn').addEventListener('click', () => modal.classList.remove('open'));
 modal.addEventListener('click', e => { if (e.target === modal) modal.classList.remove('open'); });
 
-/* ---- Contact form (Formspree) ---- */
+/* ---- Contact form (/api/contact → LINE ＋ 試算表) ---- */
+window.__zonmoLoadedAt = Date.now();
 const form = document.getElementById('contact-form');
 if (form) {
   form.addEventListener('submit', async e => {
@@ -176,7 +301,9 @@ if (form) {
     btn.disabled = true;
     try {
       const data = new FormData(form);
-      const res = await fetch('https://formspree.io/f/xkopgqdj', {
+      // 防機器人：帶上「頁面載入到送出經過幾毫秒」，直接打 API 的機器人不會有這欄
+      data.append('_js', String(Date.now() - (window.__zonmoLoadedAt || Date.now())));
+      const res = await fetch('/api/contact', {
         method: 'POST',
         body: data,
         headers: { 'Accept': 'application/json' }
@@ -829,7 +956,7 @@ const Projects = () => (
         </div>
         <div class="drone-video-caption">
           <i class="fas fa-map-marker-alt"></i>
-          <span>新北市土城區｜雲宇宙建案｜鋁合金模板施工空拍全程紀錄</span>
+          <span>新北市土城區｜雲宇宙建案</span>
         </div>
       </div>
     </div>
@@ -883,7 +1010,8 @@ const Contact = () => (
         </div>
         <div class="contact-form-box fade-in">
           <h3><i class="fas fa-paper-plane" style="color:var(--accent);margin-right:10px"></i>傳送訊息給我們</h3>
-          <form id="contact-form" action="https://formspree.io/f/xkopgqdj" method="POST">
+          <form id="contact-form" action="/api/contact" method="POST">
+            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
             <div class="form-row">
               <div class="form-group">
                 <label>您的姓名 *</label>
