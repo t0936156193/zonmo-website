@@ -2171,6 +2171,12 @@ footer {
 }
 .project-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
 .project-card img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+.project-card-placeholder {
+  aspect-ratio: 16 / 9; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
+  background: linear-gradient(135deg, var(--dark) 0%, var(--dark-3) 100%); color: rgba(255,255,255,.85);
+}
+.project-card-placeholder i { font-size: 44px; color: var(--accent-lt); }
+.project-card-placeholder span { font-size: .85rem; letter-spacing: 2px; }
 .project-card-body { padding: 22px 24px 24px; }
 .project-card h3 { font-size: 1.1rem; font-weight: 800; color: var(--dark); margin: 6px 0 10px; line-height: 1.4; }
 .project-card p { font-size: .88rem; color: var(--gray); line-height: 1.75; }

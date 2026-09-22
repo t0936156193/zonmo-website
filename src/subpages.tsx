@@ -18,6 +18,7 @@ export type SubPage = {
   specs?: Spec[]         // 規格卡（實績用）
   blocks: Block[]
   photos?: { src: string; alt: string }[]
+  cardIcon?: string      // 沒有專屬照片的案子：實績卡片用圖示底圖，不借用別案照片
   related: { label: string; href: string }[]
   keywords: string
 }
@@ -367,8 +368,9 @@ export const PROJECTS: SubPage[] = [
     h1: '廣三滯洪池工程｜模板工程',
     kicker: 'PROJECT · GUANGSAN DETENTION POND',
     lead: '地下滯洪池屬大面積水利構造物，模板尺寸精度與止水細節直接影響結構防水，合約 2,700 萬元。',
-    ogImage: '/static/og-image.jpg',
-    ogAlt: '中華鋁模公共建設模板工程',
+    ogImage: '/static/logo.png',
+    ogAlt: '中華鋁模有限公司',
+    cardIcon: 'fas fa-water',
     keywords: '滯洪池 模板,水利工程 模板,新莊 模板工程,公共工程 模板承包',
     specs: [
       { label: '業主', value: '中華工程' },
@@ -408,8 +410,9 @@ export const PROJECTS: SubPage[] = [
     h1: '涵洞／排水工程｜模板工程',
     kicker: 'PROJECT · GUISHAN CULVERT',
     lead: '桃園龜山的涵洞與排水構造物模板工程，業主萬鼎工程，合約 7,000 萬元，是中華鋁模在桃園地區的代表土木實績。',
-    ogImage: '/static/og-image.jpg',
-    ogAlt: '中華鋁模土木工程模板',
+    ogImage: '/static/logo.png',
+    ogAlt: '中華鋁模有限公司',
+    cardIcon: 'fas fa-road',
     keywords: '涵洞 模板,箱涵 模板工程,排水工程 模板,桃園 模板工程,龜山 模板',
     specs: [
       { label: '業主', value: '萬鼎工程' },
@@ -554,8 +557,8 @@ export const AREAS: SubPage[] = [
     h1: '桃園市模板工程',
     kicker: 'SERVICE AREA · TAOYUAN',
     lead: '桃園是北台灣新建案量最大的地區之一，重劃區住宅與土木公共工程並進。中華鋁模在龜山承攬 7,000 萬元的涵洞排水工程，土木模板經驗可直接對應桃園案型。',
-    ogImage: '/static/og-image.jpg',
-    ogAlt: '中華鋁模桃園模板工程',
+    ogImage: '/static/logo.png',
+    ogAlt: '中華鋁模有限公司',
     keywords: '桃園 模板工程,桃園市 鋁模,桃園 模板承包,龜山 模板,重劃區 鋁模',
     blocks: [
       {
@@ -724,7 +727,9 @@ export const ProjectCards = () => (
   <div class="project-cards">
     {PROJECTS.map(p => (
       <a href={p.path} class="project-card">
-        <img src={p.ogImage} alt={p.ogAlt} loading="lazy" />
+        {p.cardIcon
+          ? <div class="project-card-placeholder"><i class={p.cardIcon}></i><span>{p.specs?.find(s => s.label === '規模')?.value}</span></div>
+          : <img src={p.ogImage} alt={p.ogAlt} loading="lazy" />}
         <div class="project-card-body">
           <span class="section-label">{p.specs?.find(s => s.label === '地點')?.value}</span>
           <h3>{p.h1}</h3>
