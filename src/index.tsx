@@ -1,6 +1,7 @@
 import { Hono } from 'hono'
 import { jsxRenderer } from 'hono/jsx-renderer'
 import { serveStatic } from 'hono/cloudflare-workers'
+import { ALL_SUBPAGES, PROJECTS_INDEX, SubPageBody, ProjectCards, sitemapXml, breadcrumbJsonLd, pageJsonLd } from './subpages'
 
 type Bindings = { LINE_CHANNEL_TOKEN?: string; LINE_USER_ID?: string }
 const app = new Hono<{ Bindings: Bindings }>()
@@ -18,72 +19,42 @@ Sitemap: https://zonmo.com.tw/sitemap.xml
 
 app.get('/sitemap.xml', (c) => {
   c.header('Content-Type', 'application/xml')
-  return c.body(`<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://zonmo.com.tw/</loc>
-    <lastmod>2026-07-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://zonmo.com.tw/#about</loc>
-    <lastmod>2026-07-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://zonmo.com.tw/#services</loc>
-    <lastmod>2026-07-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://zonmo.com.tw/#projects</loc>
-    <lastmod>2026-07-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://zonmo.com.tw/#contact</loc>
-    <lastmod>2026-07-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-</urlset>`)
+  return c.body(sitemapXml())
 })
 
 // Layout renderer
-const renderer = jsxRenderer(({ children, title }: { children?: any; title?: string }) => (
+type PageMeta = { title?: string; description?: string; canonical?: string; ogImage?: string; ogAlt?: string; keywords?: string; jsonLd?: object[]; sub?: boolean }
+const DEFAULT_DESC = '中華鋁模有限公司專注鋁合金模板、傳統模板與地下結構／逆打工法施工，具住宅、產業園區、公共建設與土木工程實績，累計承攬總額逾 5.7 億，提供精準、高效、安全的模板工程解決方案。'
+const renderer = jsxRenderer(({ children, title, description, canonical, ogImage, ogAlt, keywords, jsonLd, sub }: { children?: any } & PageMeta) => (
   <html lang="zh-TW">
     <head>
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>{title || '中華鋁模有限公司 | 鋁合金模板・逆打工法工程專家'}</title>
-      <meta name="description" content="中華鋁模有限公司專注鋁合金模板、傳統模板與地下結構／逆打工法施工，具住宅、產業園區、公共建設與土木工程實績，累計承攬總額逾 5.7 億，提供精準、高效、安全的模板工程解決方案。" />
-      <meta name="keywords" content="中華鋁模,鋁合金模板,傳統模板,逆打工法,地下結構工程,模板工程,系統模板,建築模板,鋁模施工,模板安裝" />
+      <meta name="description" content={description || DEFAULT_DESC} />
+      <meta name="keywords" content={keywords || "中華鋁模,鋁合金模板,傳統模板,逆打工法,地下結構工程,模板工程,系統模板,建築模板,鋁模施工,模板安裝"} />
       <meta name="author" content="中華鋁模有限公司" />
       <meta name="robots" content="index, follow" />
       <meta name="google-site-verification" content="Ll-yl3BPYIUyH3Seo7deWAz9BwkrG6YD_fUNLJT8OQU" />
-      <link rel="canonical" href="https://zonmo.com.tw/" />
+      <link rel="canonical" href={canonical || "https://zonmo.com.tw/"} />
 
       {/* Open Graph (Facebook / LINE 分享預覽) */}
-      <meta property="og:type" content="website" />
-      <meta property="og:url" content="https://zonmo.com.tw/" />
-      <meta property="og:title" content="中華鋁模有限公司 | 鋁合金模板・逆打工法工程專家" />
-      <meta property="og:description" content="專注鋁合金模板、傳統模板與地下結構／逆打工法，累計承攬總額逾 5.7 億，為住宅、商業與公共建設提供精準施工服務。" />
+      <meta property="og:type" content={sub ? "article" : "website"} />
+      <meta property="og:url" content={canonical || "https://zonmo.com.tw/"} />
+      <meta property="og:title" content={title || "中華鋁模有限公司 | 鋁合金模板・逆打工法工程專家"} />
+      <meta property="og:description" content={description || "專注鋁合金模板、傳統模板與地下結構／逆打工法，累計承攬總額逾 5.7 億，為住宅、商業與公共建設提供精準施工服務。"} />
       <meta property="og:site_name" content="中華鋁模有限公司" />
       <meta property="og:locale" content="zh_TW" />
-      <meta property="og:image" content="https://zonmo.com.tw/static/og-image.jpg" />
-      <meta property="og:image:width" content="1200" />
-      <meta property="og:image:height" content="630" />
-      <meta property="og:image:alt" content="中華鋁模有限公司｜雲宇宙建案施工空拍實況" />
+      <meta property="og:image" content={ogImage ? "https://zonmo.com.tw" + ogImage : "https://zonmo.com.tw/static/og-image.jpg"} />
+      {!ogImage && <meta property="og:image:width" content="1200" />}
+      {!ogImage && <meta property="og:image:height" content="630" />}
+      <meta property="og:image:alt" content={ogAlt || "中華鋁模有限公司｜雲宇宙建案施工空拍實況"} />
 
       {/* Twitter Card */}
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content="中華鋁模有限公司 | 鋁合金模板・逆打工法工程專家" />
-      <meta name="twitter:description" content="專注鋁合金模板、傳統模板與逆打工法施工，具深地下工程與大型建案實績。" />
-      <meta name="twitter:image" content="https://zonmo.com.tw/static/og-image.jpg" />
+      <meta name="twitter:title" content={title || "中華鋁模有限公司 | 鋁合金模板・逆打工法工程專家"} />
+      <meta name="twitter:description" content={description || "專注鋁合金模板、傳統模板與逆打工法施工，具深地下工程與大型建案實績。"} />
+      <meta name="twitter:image" content={ogImage ? "https://zonmo.com.tw" + ogImage : "https://zonmo.com.tw/static/og-image.jpg"} />
 
       {/* 結構化資料 JSON-LD */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
@@ -103,6 +74,7 @@ const renderer = jsxRenderer(({ children, title }: { children?: any; title?: str
         "areaServed": ["台北市", "新北市", "桃園市"],
         "serviceType": ["鋁合金模板工程", "傳統模板工程", "地下結構工程", "逆打工法施工"]
       })}} />
+      {(jsonLd || []).map(j => <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(j) }} />)}
 
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;800;900&display=swap" />
@@ -111,7 +83,7 @@ const renderer = jsxRenderer(({ children, title }: { children?: any; title?: str
     </head>
     <body>
       {children}
-      <script dangerouslySetInnerHTML={{ __html: mainScript }} />
+      <script dangerouslySetInnerHTML={{ __html: sub ? subScript : mainScript }} />
     </body>
   </html>
 ))
@@ -261,12 +233,12 @@ if (hamburger && navLinks) {
 
 /* ---- Active nav link ---- */
 const sections = document.querySelectorAll('section[id]');
-const navAnchors = document.querySelectorAll('.nav-links a[href^="#"]');
+const navAnchors = document.querySelectorAll('.nav-links a[href^="/#"]');
 const observer = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) {
       navAnchors.forEach(a => a.classList.remove('active'));
-      const link = document.querySelector('.nav-links a[href="#' + e.target.id + '"]');
+      const link = document.querySelector('.nav-links a[href="/#' + e.target.id + '"]');
       if (link) link.classList.add('active');
     }
   });
@@ -666,16 +638,19 @@ const Services = () => (
             <div class="service-card-icon"><i class="fas fa-drafting-compass"></i></div>
             <h4>鋁合金模板工程</h4>
             <p>以高精度、可重複使用與快速週轉為特色，對應住宅與大型量體建築的模板施作需求。</p>
+            <a href="/services/aluminum-formwork" class="service-more">了解鋁合金模板工程 <i class="fas fa-arrow-right"></i></a>
           </div>
           <div class="service-card">
             <div class="service-card-icon"><i class="fas fa-hard-hat"></i></div>
             <h4>傳統模板工程</h4>
             <p>依現場條件進行客製化配置，滿足公共建設、特殊造型與複雜結構的施工需求。</p>
+            <a href="/services/traditional-formwork" class="service-more">了解傳統模板工程 <i class="fas fa-arrow-right"></i></a>
           </div>
           <div class="service-card service-card-span">
             <div class="service-card-icon"><i class="fas fa-tools"></i></div>
             <h4>地下結構／逆打工法</h4>
             <p>針對深地下層、鄰房敏感與工序密集案型，提供更重視安全管理與施工順序的專業施作服務。</p>
+            <a href="/services/top-down" class="service-more">了解地下結構模板工程 <i class="fas fa-arrow-right"></i></a>
           </div>
           {/* 協力合作廠商 */}
           <div class="service-card service-card-span partner-card">
@@ -770,9 +745,9 @@ const projectRecords = [
   {
     no: '04',
     owner: '宏昇營造',
-    name: '大直軍事博物館',
+    name: '台北市公共建築新建工程',
     subName: '模板工程',
-    location: '台北市大直',
+    location: '台北市',
     floors: '博物館建築',
     year: '2023',
     amount: '5,500 萬',
@@ -817,6 +792,7 @@ const Projects = () => (
         <h2 class="section-title">工程實績，品質驗證</h2>
         <div class="section-divider"></div>
         <p class="section-desc" style="margin:0 auto">累計承攬總額逾 5.7 億，代表工程涵蓋住宅、產業園區、公共建設與土木工程，展現中華鋁模在不同案型中的整合能力與交付經驗。</p>
+        <a href="/projects" class="service-more projects-more">查看各案詳細介紹 <i class="fas fa-arrow-right"></i></a>
       </div>
 
       {/* 代表工程實績列表 */}
@@ -1149,23 +1125,25 @@ const Footer = () => (
         <div class="footer-col">
           <h4>網站導覽</h4>
           <ul>
-            <li><a href="#about"><i class="fas fa-chevron-right"></i> 關於我們</a></li>
-            <li><a href="#values"><i class="fas fa-chevron-right"></i> 核心優勢</a></li>
-            <li><a href="#services"><i class="fas fa-chevron-right"></i> 服務項目</a></li>
-            <li><a href="#projects"><i class="fas fa-chevron-right"></i> 工程實績</a></li>
-            <li><a href="#contact"><i class="fas fa-chevron-right"></i> 聯絡我們</a></li>
-            <li><a href="#recruitment"><i class="fas fa-chevron-right"></i> 人才招募</a></li>
+            <li><a href="/#about"><i class="fas fa-chevron-right"></i> 關於我們</a></li>
+            <li><a href="/#values"><i class="fas fa-chevron-right"></i> 核心優勢</a></li>
+            <li><a href="/#services"><i class="fas fa-chevron-right"></i> 服務項目</a></li>
+            <li><a href="/projects"><i class="fas fa-chevron-right"></i> 工程實績</a></li>
+            <li><a href="/#contact"><i class="fas fa-chevron-right"></i> 聯絡我們</a></li>
+            <li><a href="/#recruitment"><i class="fas fa-chevron-right"></i> 人才招募</a></li>
           </ul>
         </div>
         <div class="footer-col">
           <h4>服務項目</h4>
           <ul>
-            <li><a href="#services"><i class="fas fa-chevron-right"></i> 鋁合金模板工程</a></li>
-            <li><a href="#services"><i class="fas fa-chevron-right"></i> 傳統模板工程</a></li>
-            <li><a href="#services"><i class="fas fa-chevron-right"></i> 地下結構工程</a></li>
-            <li><a href="#services"><i class="fas fa-chevron-right"></i> 逆打工法施工</a></li>
+            <li><a href="/services/aluminum-formwork"><i class="fas fa-chevron-right"></i> 鋁合金模板工程</a></li>
+            <li><a href="/services/traditional-formwork"><i class="fas fa-chevron-right"></i> 傳統模板工程</a></li>
+            <li><a href="/services/top-down"><i class="fas fa-chevron-right"></i> 地下結構工程</a></li>
+            <li><a href="/areas/taipei"><i class="fas fa-chevron-right"></i> 台北市模板工程</a></li>
+            <li><a href="/areas/new-taipei"><i class="fas fa-chevron-right"></i> 新北市模板工程</a></li>
+            <li><a href="/areas/taoyuan"><i class="fas fa-chevron-right"></i> 桃園市模板工程</a></li>
             <li><a href="https://www.yosonsf.com/" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> 佑昇鷹架（協力）</a></li>
-            <li><a href="#services"><i class="fas fa-chevron-right"></i> 禾鋒鋼筋（協力）</a></li>
+            <li><a href="/#services"><i class="fas fa-chevron-right"></i> 禾鋒鋼筋（協力）</a></li>
           </ul>
         </div>
         <div class="footer-col">
@@ -1192,7 +1170,7 @@ const Footer = () => (
         <p>Copyright © 2026 ZONMO · 中華鋁模有限公司 · All rights reserved.</p>
         <div class="footer-bottom-links">
           <a href="#" data-modal="privacy">隱私政策</a>
-          <a href="#contact">聯絡我們</a>
+          <a href="/#contact">聯絡我們</a>
         </div>
       </div>
     </div>
@@ -1237,12 +1215,12 @@ const Navbar = () => (
           </div>
         </a>
         <div class="nav-links">
-          <a href="#about">關於我們</a>
-          <a href="#values">核心優勢</a>
-          <a href="#services">服務項目</a>
-          <a href="#projects">工程實績</a>
-          <a href="#recruitment">人才招募</a>
-          <a href="#contact" class="nav-cta">立即洽詢</a>
+          <a href="/#about">關於我們</a>
+          <a href="/#values">核心優勢</a>
+          <a href="/#services">服務項目</a>
+          <a href="/projects">工程實績</a>
+          <a href="/#recruitment">人才招募</a>
+          <a href="/#contact" class="nav-cta">立即洽詢</a>
         </div>
         <div class="hamburger">
           <span></span><span></span><span></span>
@@ -1251,6 +1229,55 @@ const Navbar = () => (
     </div>
   </nav>
 )
+
+// ── 內頁腳本（沒有輪播／表單／計數器，避免 mainScript 抓不到元素報錯）──
+const subScript = `
+const navbar = document.getElementById('navbar');
+navbar.classList.add('scrolled');
+const hamburger = document.querySelector('.hamburger');
+const navLinks = document.querySelector('.nav-links');
+if (hamburger && navLinks) {
+  hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+}
+const scrollBtn = document.getElementById('scroll-top');
+window.addEventListener('scroll', () => { scrollBtn.classList.toggle('visible', window.scrollY > 400); });
+scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+document.querySelectorAll('.fade-in').forEach(el => el.classList.add('visible'));
+const modal = document.getElementById('privacy-modal');
+document.querySelectorAll('[data-modal="privacy"]').forEach(btn => {
+  btn.addEventListener('click', e => { e.preventDefault(); modal.classList.add('open'); });
+});
+document.getElementById('modal-close-btn').addEventListener('click', () => modal.classList.remove('open'));
+modal.addEventListener('click', e => { if (e.target === modal) modal.classList.remove('open'); });
+`
+
+// ── 內頁路由（SEO 拆頁）──
+const SITE_URL = 'https://zonmo.com.tw'
+for (const page of ALL_SUBPAGES) {
+  app.get(page.path, (c) =>
+    c.render(
+      <>
+        <Navbar />
+        <SubPageBody page={page}>
+          {page.kind === 'projects-index' && <ProjectCards />}
+        </SubPageBody>
+        <Footer />
+        <button id="scroll-top" title="回到頂端"><i class="fas fa-chevron-up"></i></button>
+      </>,
+      {
+        title: page.title,
+        description: page.desc,
+        canonical: SITE_URL + page.path,
+        ogImage: page.ogImage,
+        ogAlt: page.ogAlt,
+        keywords: page.keywords,
+        jsonLd: [breadcrumbJsonLd(page), pageJsonLd(page)],
+        sub: true,
+      }
+    )
+  )
+}
 
 // ── Main route ────────────────────────────────────────────────────────────────
 app.get('/', (c) => {
