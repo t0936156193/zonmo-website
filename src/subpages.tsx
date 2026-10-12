@@ -583,7 +583,7 @@ import { ARTICLES, ARTICLES_INDEX } from './articles'
 export const ALL_SUBPAGES: SubPage[] = [...SERVICES, PROJECTS_INDEX, ...PROJECTS, ...AREAS, ARTICLES_INDEX, ...ARTICLES]
 
 export function sitemapXml(): string {
-  const today = '2026-09-22'
+  const today = '2026-10-12'
   const urls = [{ loc: SITE + '/', pri: '1.0' }, ...ALL_SUBPAGES.map(p => ({ loc: SITE + p.path, pri: p.kind === 'project' || p.kind === 'article' ? '0.7' : '0.8' }))]
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
